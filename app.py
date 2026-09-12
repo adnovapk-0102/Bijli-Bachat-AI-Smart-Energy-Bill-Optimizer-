@@ -19,7 +19,7 @@ st.set_page_config(
 )
 
 # -----------------------------
-# Professional UI styling & Theme Visibility Fixes
+# Professional UI styling
 # -----------------------------
 st.markdown("""
 <style>
@@ -27,41 +27,11 @@ st.markdown("""
         background: linear-gradient(135deg, #f8fafc 0%, #f0fdf4 100%);
     }
 
-    /* Sidebar universal background and text color safety */
     [data-testid="stSidebar"] {
-        background: #0f172a !important;
+        background: #0f172a;
     }
-    [data-testid="stSidebar"] *, 
-    [data-testid="stSidebar"] label, 
-    [data-testid="stSidebar"] .stMarkdown {
+    [data-testid="stSidebar"] * {
         color: #f8fafc !important;
-    }
-
-    /* Fix input fields visibility across Light and Dark themes */
-    [data-testid="stSidebar"] input, 
-    [data-testid="stSidebar"] select, 
-    [data-testid="stSidebar"] textarea,
-    [data-testid="stNumberInput"] input,
-    [data-testid="stTextInput"] input,
-    .stApp input, .stApp select, .stApp textarea {
-        background-color: #ffffff !important;
-        color: #0f172a !important;
-        -webkit-text-fill-color: #0f172a !important;
-        border: 1px solid #cbd5e1 !important;
-    }
-
-    /* File uploader box text & background styling */
-    [data-testid="stFileUploader"] {
-        background-color: rgba(255, 255, 255, 0.05) !important;
-        border-radius: 12px;
-        padding: 0.5rem;
-    }
-    [data-testid="stFileUploader"] section {
-        background-color: #ffffff !important;
-        border: 1px dashed #94a3b8 !important;
-    }
-    [data-testid="stFileUploader"] section * {
-        color: #0f172a !important;
     }
 
     .hero {
