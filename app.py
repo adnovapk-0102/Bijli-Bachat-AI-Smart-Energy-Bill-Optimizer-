@@ -28,42 +28,22 @@ st.markdown("""
     }
 
     /* ===================================================== */
-    /* SIDEBAR / HOUSEHOLD PROFILE — THEME AWARE            */
+    /* SIDEBAR - THEME AWARE TEXT + INPUT CONTROLS           */
     /* ===================================================== */
 
     [data-testid="stSidebar"] {
         background: #0f172a;
     }
 
-    /* Dark mode */
+    /* Dark theme sidebar */
     [data-testid="stSidebar"] * {
-        color: #f8fafc !important;
+        color: #f8fafc;
     }
 
-    [data-testid="stSidebar"] input,
-    [data-testid="stSidebar"] textarea {
-        color: #f8fafc !important;
-        -webkit-text-fill-color: #f8fafc !important;
-    }
+    /* ----------------------------------------------------- */
+    /* LIGHT THEME SIDEBAR                                   */
+    /* ----------------------------------------------------- */
 
-    [data-testid="stSidebar"] input::placeholder,
-    [data-testid="stSidebar"] textarea::placeholder {
-        color: #cbd5e1 !important;
-        opacity: 1 !important;
-    }
-
-    [data-testid="stSidebar"] [data-baseweb="select"] *,
-    [data-testid="stSidebar"] [data-baseweb="input"] *,
-    [data-testid="stSidebar"] [data-testid="stNumberInput"] * {
-        color: #f8fafc !important;
-        -webkit-text-fill-color: #f8fafc !important;
-    }
-
-    [data-testid="stSidebar"] button {
-        color: #f8fafc !important;
-    }
-
-    /* Light mode */
     @media (prefers-color-scheme: light) {
         [data-testid="stSidebar"] {
             background: #ffffff !important;
@@ -73,34 +53,191 @@ st.markdown("""
             color: #0f172a !important;
         }
 
-        [data-testid="stSidebar"] input,
-        [data-testid="stSidebar"] textarea {
+        /* Text inputs, number inputs and select boxes */
+        [data-testid="stSidebar"] input {
+            background-color: #ffffff !important;
             color: #0f172a !important;
-            -webkit-text-fill-color: #0f172a !important;
+            caret-color: #0f172a !important;
+            border-color: #cbd5e1 !important;
         }
 
-        [data-testid="stSidebar"] input::placeholder,
-        [data-testid="stSidebar"] textarea::placeholder {
+        [data-testid="stSidebar"] input::placeholder {
             color: #64748b !important;
             opacity: 1 !important;
         }
 
-        [data-testid="stSidebar"] [data-baseweb="select"] *,
-        [data-testid="stSidebar"] [data-baseweb="input"] *,
-        [data-testid="stSidebar"] [data-testid="stNumberInput"] * {
+        /* Number input wrapper */
+        [data-testid="stSidebar"] [data-testid="stNumberInput"] {
             color: #0f172a !important;
-            -webkit-text-fill-color: #0f172a !important;
         }
 
+        [data-testid="stSidebar"] [data-testid="stNumberInput"] input {
+            color: #0f172a !important;
+            background-color: #ffffff !important;
+        }
+
+        /* Number input +/- buttons */
+        [data-testid="stSidebar"] [data-testid="stNumberInput"] button {
+            color: #0f172a !important;
+            background-color: #ffffff !important;
+            border-color: #cbd5e1 !important;
+        }
+
+        [data-testid="stSidebar"] [data-testid="stNumberInput"] button svg {
+            color: #0f172a !important;
+            fill: #0f172a !important;
+            stroke: #0f172a !important;
+        }
+
+        [data-testid="stSidebar"] [data-testid="stNumberInput"] button:hover {
+            background-color: #f1f5f9 !important;
+            color: #0f172a !important;
+        }
+
+        /* Selectbox main box */
+        [data-testid="stSidebar"] [data-testid="stSelectbox"] {
+            color: #0f172a !important;
+        }
+
+        [data-testid="stSidebar"] [data-testid="stSelectbox"] > div > div {
+            background-color: #ffffff !important;
+            color: #0f172a !important;
+            border-color: #cbd5e1 !important;
+        }
+
+        [data-testid="stSidebar"] [data-testid="stSelectbox"] div {
+            color: #0f172a !important;
+        }
+
+        [data-testid="stSidebar"] [data-testid="stSelectbox"] span {
+            color: #0f172a !important;
+        }
+
+        [data-testid="stSidebar"] [data-testid="stSelectbox"] svg {
+            color: #0f172a !important;
+            fill: #0f172a !important;
+        }
+
+        /* Selectbox dropdown / popup */
+        [data-testid="stSidebar"] [role="listbox"],
+        [data-testid="stSidebar"] [role="option"] {
+            background-color: #ffffff !important;
+            color: #0f172a !important;
+        }
+
+        [data-testid="stSidebar"] [role="option"] * {
+            color: #0f172a !important;
+        }
+
+        [data-testid="stSidebar"] [role="option"]:hover {
+            background-color: #f1f5f9 !important;
+            color: #0f172a !important;
+        }
+
+        /* File uploader */
+        [data-testid="stSidebar"] [data-testid="stFileUploader"] {
+            color: #0f172a !important;
+        }
+
+        [data-testid="stSidebar"] [data-testid="stFileUploader"] section {
+            background-color: #ffffff !important;
+            border-color: #cbd5e1 !important;
+        }
+
+        [data-testid="stSidebar"] [data-testid="stFileUploader"] section * {
+            color: #0f172a !important;
+        }
+
+        /* Expander */
+        [data-testid="stSidebar"] [data-testid="stExpander"] {
+            background-color: #ffffff !important;
+            border-color: #cbd5e1 !important;
+        }
+
+        [data-testid="stSidebar"] [data-testid="stExpander"] * {
+            color: #0f172a !important;
+        }
+
+        /* Sidebar captions */
+        [data-testid="stSidebar"] .stCaption,
+        [data-testid="stSidebar"] small {
+            color: #475569 !important;
+        }
+
+        /* Sidebar headings */
+        [data-testid="stSidebar"] h1,
+        [data-testid="stSidebar"] h2,
+        [data-testid="stSidebar"] h3,
+        [data-testid="stSidebar"] h4,
+        [data-testid="stSidebar"] p,
+        [data-testid="stSidebar"] label {
+            color: #0f172a !important;
+        }
+
+        /* Sidebar buttons */
         [data-testid="stSidebar"] button {
             color: #0f172a !important;
         }
 
-        [data-testid="stSidebar"] svg {
-            fill: #0f172a !important;
+        [data-testid="stSidebar"] button p,
+        [data-testid="stSidebar"] button span {
             color: #0f172a !important;
         }
+
+        /* Keep primary Analyze button readable */
+        [data-testid="stSidebar"] div.stButton > button[kind="primary"],
+        [data-testid="stSidebar"] div.stButton > button[data-testid="stBaseButton-primary"] {
+            background: #0f172a !important;
+            color: #ffffff !important;
+            border-color: #0f172a !important;
+        }
+
+        [data-testid="stSidebar"] div.stButton > button[kind="primary"] *,
+        [data-testid="stSidebar"] div.stButton > button[data-testid="stBaseButton-primary"] * {
+            color: #ffffff !important;
+        }
     }
+
+    /* ===================================================== */
+    /* GENERAL DARK SIDEBAR INPUT VISIBILITY                 */
+    /* ===================================================== */
+
+    [data-testid="stSidebar"] input {
+        color: #f8fafc;
+    }
+
+    [data-testid="stSidebar"] input::placeholder {
+        color: #cbd5e1;
+        opacity: 1;
+    }
+
+    [data-testid="stSidebar"] [data-testid="stNumberInput"] input {
+        color: #f8fafc !important;
+    }
+
+    [data-testid="stSidebar"] [data-testid="stNumberInput"] button {
+        color: #f8fafc !important;
+    }
+
+    [data-testid="stSidebar"] [data-testid="stNumberInput"] button svg {
+        color: #f8fafc !important;
+        fill: #f8fafc !important;
+        stroke: #f8fafc !important;
+    }
+
+    [data-testid="stSidebar"] [data-testid="stSelectbox"] div,
+    [data-testid="stSidebar"] [data-testid="stSelectbox"] span {
+        color: #f8fafc !important;
+    }
+
+    [data-testid="stSidebar"] [data-testid="stSelectbox"] svg {
+        color: #f8fafc !important;
+        fill: #f8fafc !important;
+    }
+
+    /* ---------------------------------------------------- */
+    /* Main application                                     */
+    /* ---------------------------------------------------- */
 
     .hero {
         padding: 2rem 2.2rem;
@@ -569,11 +706,13 @@ def build_ai_client():
 def extract_bill_data(uploaded_file, bill_type):
     """Read a supported electricity-bill image/PDF with Gemini and return structured fields."""
     client = build_ai_client()
+
     if client is None:
         return None, "AI is not connected. Add GEMINI_API_KEY in Streamlit Secrets."
 
     try:
         uploaded_file.seek(0)
+
         bill_part = genai.types.Part.from_bytes(
             data=uploaded_file.getvalue(),
             mime_type=uploaded_file.type or "application/octet-stream",
@@ -594,22 +733,29 @@ Return ONLY valid JSON with exactly these keys:
 
 For bill_amount_pkr, use the final/current payable bill amount or total bill amount
 that best represents the amount the household pays for this bill.
+
 For units_kwh, use the billed electricity consumption/units (kWh) for this bill.
+
 If a value is not clearly available, return null.
 """
+
         response = client.models.generate_content(
             model="gemini-3.6-flash",
             contents=[bill_part, prompt],
         )
 
         text = (response.text or "").strip()
+
         if text.startswith("`"):
             text = text.strip("`").strip()
+
             if text.lower().startswith("json"):
                 text = text[4:].strip()
 
         data = json.loads(text)
+
         return data, None
+
     except Exception as exc:
         return None, f"Could not read the uploaded bill: {exc}"
 
@@ -621,7 +767,9 @@ If a value is not clearly available, return null.
 # ============================================================
 
 def run_ai_analysis(user_data, role, user_question=None):
+
     client = build_ai_client()
+
     if client is None:
         return (
             "AI is not connected yet. Add GEMINI_API_KEY in Streamlit Secrets "
@@ -629,67 +777,103 @@ def run_ai_analysis(user_data, role, user_question=None):
         )
 
     role_instructions = {
+
         "Understanding Agent": """
 You are the Understanding Specialist for Bijli Bachat AI.
+
 Interpret the user's household, electricity-bill and appliance information.
+
 Identify the user's main energy problem and summarize it in simple language.
+
 Do not invent missing data.
 """,
+
         "Energy Analysis Agent": """
 You are the Energy Analysis Specialist for Bijli Bachat AI.
+
 Analyze appliance-level energy consumption, estimated monthly units,
 estimated costs, unusual consumption patterns, and major energy drivers.
-Prioritize measurable findings. Do not invent meter readings.
+
+Prioritize measurable findings.
+
+Do not invent meter readings.
 """,
+
         "Saving Strategy Agent": """
 You are the Saving Strategy Specialist for Bijli Bachat AI.
+
 Create a practical Pakistan-household energy-saving plan.
+
 Prioritize high-impact, low-cost actions first.
+
 Give estimated savings only when the supplied data supports an estimate,
 and label estimates clearly.
 """,
+
         "Monitoring & Alerting Agent": """
 You are the Monitoring & Alerting Specialist for Bijli Bachat AI.
+
 Identify useful thresholds, warning signs and monthly checks.
+
 Suggest what the household should monitor next month.
+
 Do not claim to monitor live electricity data; this MVP only uses user-entered data.
 """,
+
         "General Energy Assistant": """
 You are a helpful energy-efficiency advisor.
+
 Answer any specific energy questions using only the supplied household data.
+
 Be concise, practical and honest about estimates and uncertainty.
 """,
     }
 
     prompt = f"""
 PROJECT: Bijli Bachat AI — Smart Energy & Bill Optimizer
+
 COUNTRY CONTEXT: Pakistan
-IMPORTANT: This is an educational/hackathon energy-estimation application.
+
+IMPORTANT:
+This is an educational/hackathon energy-estimation application.
+
 Never claim to have access to a live smart meter unless the user supplied such data.
+
 Never fabricate tariff rates, meter readings, appliance ratings or savings.
 
 SPECIALIST ROLE:
-{role_instructions.get(role, role_instructions["General Energy Assistant"])}
+
+{role_instructions.get(
+    role,
+    role_instructions["General Energy Assistant"]
+)}
 
 HOUSEHOLD DATA:
+
 {json.dumps(user_data, indent=2, ensure_ascii=False)}
 
 USER QUESTION:
+
 {user_question or "Provide the requested specialist analysis."}
 
 OUTPUT RULES:
+
 - Use clear headings.
 - Give actionable bullet points.
 - Distinguish calculated values from AI estimates.
 - If important information is missing, say exactly what is missing.
 - Keep the answer suitable for a general Pakistani household.
 """
+
     try:
+
         response = client.models.generate_content(
             model="gemini-3.6-flash",
             contents=prompt,
         )
+
         return response.text or "No AI response was returned."
+
     except Exception as exc:
         return f"AI request failed: {exc}"
 
@@ -710,6 +894,7 @@ st.caption(
     "while AI provides explanations and recommendations."
 )
 
+
 # -----------------------------
 # Sidebar inputs
 # -----------------------------
@@ -719,15 +904,28 @@ for source_key, widget_key in [
     ("previous_bill_extracted_amount", "previous_bill_input"),
     ("previous_bill_extracted_units", "previous_units_input"),
 ]:
+
     if source_key in st.session_state:
         st.session_state[widget_key] = st.session_state.pop(source_key)
 
+
 with st.sidebar:
+
     st.markdown("## 🏠 Household Profile")
+
     household_size = st.number_input(
-        "People in household", min_value=1, max_value=30, value=4, step=1
+        "People in household",
+        min_value=1,
+        max_value=30,
+        value=4,
+        step=1
     )
-    city = st.text_input("City", value="Multan")
+
+    city = st.text_input(
+        "City",
+        value="Multan"
+    )
+
     monthly_bill = st.number_input(
         "Latest monthly electricity bill (PKR)",
         min_value=0.0,
@@ -735,6 +933,7 @@ with st.sidebar:
         step=500.0,
         key="monthly_bill_input",
     )
+
     latest_bill_file = st.file_uploader(
         "Upload latest electricity bill (optional)",
         type=["png", "jpg", "jpeg", "webp"],
@@ -750,6 +949,7 @@ with st.sidebar:
         key="previous_bill_input",
         help="Enter the previous bill amount to enable bill-over-bill alerts.",
     )
+
     previous_bill_file = st.file_uploader(
         "Upload previous month's electricity bill (optional)",
         type=["png", "jpg", "jpeg", "webp"],
@@ -765,6 +965,7 @@ with st.sidebar:
         key="monthly_units_input",
         help="Enter the units/kWh shown on your electricity bill. This is more useful than bill amount alone.",
     )
+
     previous_units = st.number_input(
         "Previous month's units (optional)",
         min_value=0.0,
@@ -772,6 +973,7 @@ with st.sidebar:
         step=10.0,
         key="previous_units_input",
     )
+
     tariff = st.number_input(
         "Approx. cost per unit (PKR)",
         min_value=0.0,
@@ -781,8 +983,12 @@ with st.sidebar:
     )
 
     st.markdown("---")
+
     st.markdown("### Appliance Setup")
-    st.caption("Add the appliances you want the app to analyze.")
+
+    st.caption(
+        "Add the appliances you want the app to analyze."
+    )
 
     appliance_count = st.number_input(
         "Number of appliances",
@@ -793,14 +999,22 @@ with st.sidebar:
     )
 
     appliances = []
+
     for i in range(int(appliance_count)):
-        with st.expander(f"Appliance {i+1}", expanded=(i < 2)):
+
+        with st.expander(
+            f"Appliance {i+1}",
+            expanded=(i < 2)
+        ):
+
             appliance_type = st.selectbox(
                 "Appliance",
                 list(APPLIANCE_PRESETS.keys()),
                 key=f"type_{i}",
             )
+
             default_watts = APPLIANCE_PRESETS[appliance_type]
+
             watts = st.number_input(
                 "Power (watts)",
                 min_value=1.0,
@@ -808,6 +1022,7 @@ with st.sidebar:
                 step=10.0,
                 key=f"watts_{i}",
             )
+
             hours = st.number_input(
                 "Hours used per day",
                 min_value=0.0,
@@ -816,6 +1031,7 @@ with st.sidebar:
                 step=0.5,
                 key=f"hours_{i}",
             )
+
             quantity = st.number_input(
                 "Quantity",
                 min_value=1,
@@ -824,6 +1040,7 @@ with st.sidebar:
                 step=1,
                 key=f"qty_{i}",
             )
+
             appliances.append(
                 {
                     "name": appliance_type,
@@ -839,15 +1056,22 @@ with st.sidebar:
         use_container_width=True,
     )
 
+
 # -----------------------------
 # Calculations
 # -----------------------------
 rows = []
+
 for a in appliances:
+
     kwh = calculate_appliance_energy(
-        a["watts"], a["hours_per_day"], a["quantity"]
+        a["watts"],
+        a["hours_per_day"],
+        a["quantity"]
     )
+
     cost = kwh * tariff
+
     rows.append(
         {
             "Appliance": a["name"],
@@ -859,28 +1083,54 @@ for a in appliances:
         }
     )
 
+
 df = pd.DataFrame(rows)
-total_appliance_kwh = float(df["Monthly kWh"].sum()) if not df.empty else 0.0
+
+total_appliance_kwh = (
+    float(df["Monthly kWh"].sum())
+    if not df.empty
+    else 0.0
+)
+
 estimated_appliance_cost = total_appliance_kwh * tariff
 
 if monthly_units > 0:
-    appliance_share = min((total_appliance_kwh / monthly_units) * 100, 999)
+    appliance_share = min(
+        (total_appliance_kwh / monthly_units) * 100,
+        999
+    )
 else:
     appliance_share = 0.0
 
+
 if previous_units > 0 and monthly_units > 0:
-    units_change_pct = ((monthly_units - previous_units) / previous_units) * 100
+
+    units_change_pct = (
+        (monthly_units - previous_units)
+        / previous_units
+    ) * 100
+
 else:
     units_change_pct = None
 
+
 if previous_bill > 0 and monthly_bill > 0:
-    bill_change_pct = ((monthly_bill - previous_bill) / previous_bill) * 100
+
+    bill_change_pct = (
+        (monthly_bill - previous_bill)
+        / previous_bill
+    ) * 100
+
 else:
     bill_change_pct = None
 
+
 change_pct = units_change_pct
+
 GRID_CO2_FACTOR = 0.40
+
 estimated_co2 = monthly_units * GRID_CO2_FACTOR
+
 
 # -----------------------------
 # Main dashboard
@@ -888,13 +1138,15 @@ estimated_co2 = monthly_units * GRID_CO2_FACTOR
 if analyze or "analyzed" not in st.session_state:
     st.session_state["analyzed"] = True
 
+
 st.markdown(
     '<div class="section-title">📊 Your Energy Snapshot</div>',
-    unsafe_allow_html=True,
+    unsafe_allow_html=True
 )
 
 
 def status_card(title, value, status, status_text):
+
     return f"""
     <div class="snapshot-card {status}">
         <div class="snapshot-title">{title}</div>
@@ -905,75 +1157,135 @@ def status_card(title, value, status, status_text):
 
 
 if units_change_pct is None:
-    units_status, units_text = "neutral", "No previous units entered"
+
+    units_status = "neutral"
+    units_text = "No previous units entered"
+
 elif units_change_pct <= -5:
-    units_status, units_text = "good", f"↓ {abs(units_change_pct):.1f}% vs previous month"
+
+    units_status = "good"
+    units_text = f"↓ {abs(units_change_pct):.1f}% vs previous month"
+
 elif units_change_pct >= 10:
-    units_status, units_text = "alert", f"↑ {units_change_pct:.1f}% — energy alert"
+
+    units_status = "alert"
+    units_text = f"↑ {units_change_pct:.1f}% — energy alert"
+
 else:
-    units_status, units_text = "warning", f"↑ {units_change_pct:.1f}% — monitor usage"
+
+    units_status = "warning"
+    units_text = f"↑ {units_change_pct:.1f}% — monitor usage"
+
 
 if bill_change_pct is None:
-    bill_status, bill_text = "neutral", "No previous bill entered"
+
+    bill_status = "neutral"
+    bill_text = "No previous bill entered"
+
 elif bill_change_pct <= -5:
-    bill_status, bill_text = "good", f"↓ {abs(bill_change_pct):.1f}% vs previous bill"
+
+    bill_status = "good"
+    bill_text = f"↓ {abs(bill_change_pct):.1f}% vs previous bill"
+
 elif bill_change_pct >= 10:
-    bill_status, bill_text = "alert", f"↑ {bill_change_pct:.1f}% — bill alert"
+
+    bill_status = "alert"
+    bill_text = f"↑ {bill_change_pct:.1f}% — bill alert"
+
 else:
-    bill_status, bill_text = "warning", f"↑ {bill_change_pct:.1f}% — monitor bill"
+
+    bill_status = "warning"
+    bill_text = f"↑ {bill_change_pct:.1f}% — monitor bill"
+
 
 if total_appliance_kwh <= monthly_units * 0.75:
-    appliance_status, appliance_text = (
-        "good",
-        "Appliance estimate is within bill units",
-    )
+
+    appliance_status = "good"
+    appliance_text = "Appliance estimate is within bill units"
+
 elif monthly_units > 0 and total_appliance_kwh > monthly_units * 1.05:
-    appliance_status, appliance_text = (
-        "alert",
-        "Entered appliance use exceeds bill units",
-    )
+
+    appliance_status = "alert"
+    appliance_text = "Entered appliance use exceeds bill units"
+
 else:
-    appliance_status, appliance_text = (
-        "warning",
-        "Review appliance usage estimate",
-    )
+
+    appliance_status = "warning"
+    appliance_text = "Review appliance usage estimate"
+
 
 if units_change_pct is None and bill_change_pct is None:
-    trend_status, trend_text = (
-        "neutral",
-        "Add previous bill + units for alerts",
-    )
-elif (units_change_pct is not None and units_change_pct >= 10) or (
-    bill_change_pct is not None and bill_change_pct >= 10
+
+    trend_status = "neutral"
+    trend_text = "Add previous bill + units for alerts"
+
+elif (
+    units_change_pct is not None
+    and units_change_pct >= 10
+) or (
+    bill_change_pct is not None
+    and bill_change_pct >= 10
 ):
-    trend_status, trend_text = (
-        "alert",
-        "High-priority review recommended",
-    )
-elif (units_change_pct is not None and units_change_pct <= -5) and (
-    bill_change_pct is None or bill_change_pct <= -5
+
+    trend_status = "alert"
+    trend_text = "High-priority review recommended"
+
+elif (
+    units_change_pct is not None
+    and units_change_pct <= -5
+) and (
+    bill_change_pct is None
+    or bill_change_pct <= -5
 ):
-    trend_status, trend_text = (
-        "good",
-        "Your overall trend is improving",
-    )
+
+    trend_status = "good"
+    trend_text = "Your overall trend is improving"
+
 else:
-    trend_status, trend_text = (
-        "warning",
-        "Monitor next month's numbers",
-    )
+
+    trend_status = "warning"
+    trend_text = "Monitor next month's numbers"
+
 
 st.markdown(
     f"""
     <div class="snapshot-grid">
-        {status_card("Monthly Units", f"{monthly_units:,.0f} kWh", units_status, units_text)}
-        {status_card("Latest Bill", money(monthly_bill), bill_status, bill_text)}
-        {status_card("Appliance Estimate", f"{total_appliance_kwh:,.0f} kWh", appliance_status, appliance_text)}
-        {status_card("Energy Trend", f"{units_change_pct:+.1f}%" if units_change_pct is not None else "N/A", trend_status, trend_text)}
+
+        {status_card(
+            "Monthly Units",
+            f"{monthly_units:,.0f} kWh",
+            units_status,
+            units_text
+        )}
+
+        {status_card(
+            "Latest Bill",
+            money(monthly_bill),
+            bill_status,
+            bill_text
+        )}
+
+        {status_card(
+            "Appliance Estimate",
+            f"{total_appliance_kwh:,.0f} kWh",
+            appliance_status,
+            appliance_text
+        )}
+
+        {status_card(
+            "Energy Trend",
+            f"{units_change_pct:+.1f}%"
+            if units_change_pct is not None
+            else "N/A",
+            trend_status,
+            trend_text
+        )}
+
     </div>
     """,
     unsafe_allow_html=True,
 )
+
 
 if (
     bill_change_pct is not None
@@ -981,10 +1293,23 @@ if (
     and units_change_pct is not None
     and units_change_pct <= 0
 ):
+
     st.markdown(
-        f'<div class="warning-card">⚠️ <b>Bill Alert:</b> your bill increased by <b>{bill_change_pct:.1f}%</b> while your units did not increase. This can happen because of tariff slabs, taxes, fixed charges or other bill components, so review the bill details before blaming appliance usage.</div>',
+        f'''
+        <div class="warning-card">
+            ⚠️ <b>Bill Alert:</b>
+            your bill increased by
+            <b>{bill_change_pct:.1f}%</b>
+            while your units did not increase.
+            This can happen because of tariff slabs, taxes,
+            fixed charges or other bill components, so review
+            the bill details before blaming appliance usage.
+        </div>
+        ''',
         unsafe_allow_html=True,
     )
+
+
 elif (
     bill_change_pct is not None
     and bill_change_pct >= 10
@@ -992,15 +1317,39 @@ elif (
     units_change_pct is not None
     and units_change_pct >= 10
 ):
+
     reasons = []
-    if bill_change_pct is not None and bill_change_pct >= 10:
-        reasons.append(f"bill is up {bill_change_pct:.1f}%")
-    if units_change_pct is not None and units_change_pct >= 10:
-        reasons.append(f"units are up {units_change_pct:.1f}%")
+
+    if (
+        bill_change_pct is not None
+        and bill_change_pct >= 10
+    ):
+        reasons.append(
+            f"bill is up {bill_change_pct:.1f}%"
+        )
+
+    if (
+        units_change_pct is not None
+        and units_change_pct >= 10
+    ):
+        reasons.append(
+            f"units are up {units_change_pct:.1f}%"
+        )
+
     st.markdown(
-        f'<div class="warning-card">🚨 <b>Energy Alert:</b> {" and ".join(reasons)} compared with the previous month. Check the appliance audit below for the likely high-consumption drivers.</div>',
+        f'''
+        <div class="warning-card">
+            🚨 <b>Energy Alert:</b>
+            {" and ".join(reasons)}
+            compared with the previous month.
+            Check the appliance audit below for the likely
+            high-consumption drivers.
+        </div>
+        ''',
         unsafe_allow_html=True,
     )
+
+
 elif (
     bill_change_pct is not None
     and bill_change_pct <= -5
@@ -1008,45 +1357,82 @@ elif (
     units_change_pct is None
     or units_change_pct <= -5
 ):
+
     st.markdown(
-        f'<div class="success-card">✅ <b>Good news:</b> your bill has reduced by <b>{abs(bill_change_pct):.1f}%</b> compared with the previous bill, and your energy trend is also improving.</div>',
+        f'''
+        <div class="success-card">
+            ✅ <b>Good news:</b>
+            your bill has reduced by
+            <b>{abs(bill_change_pct):.1f}%</b>
+            compared with the previous bill,
+            and your energy trend is also improving.
+        </div>
+        ''',
         unsafe_allow_html=True,
     )
 
+
 st.markdown("---")
+
 
 left, right = st.columns([1.15, 0.85])
 
+
 with left:
+
     st.markdown("### 🔌 Appliance Energy Audit")
+
     if not df.empty:
+
         display_df = df.copy()
-        display_df["Monthly kWh"] = display_df["Monthly kWh"].round(1)
-        display_df["Estimated Cost"] = display_df["Estimated Cost"].round(0)
+
+        display_df["Monthly kWh"] = (
+            display_df["Monthly kWh"].round(1)
+        )
+
+        display_df["Estimated Cost"] = (
+            display_df["Estimated Cost"].round(0)
+        )
+
         st.dataframe(
             display_df,
             use_container_width=True,
-            hide_index=True,
+            hide_index=True
         )
 
-        chart_df = df[["Appliance", "Monthly kWh"]].copy()
+        chart_df = df[
+            ["Appliance", "Monthly kWh"]
+        ].copy()
+
         chart_df = chart_df.sort_values(
             "Monthly kWh",
-            ascending=True,
+            ascending=True
         )
-        st.bar_chart(chart_df.set_index("Appliance"))
+
+        st.bar_chart(
+            chart_df.set_index("Appliance")
+        )
+
 
 with right:
+
     st.markdown("### 🎯 Highest Energy Consumers")
+
     if not df.empty:
+
         top = df.sort_values(
             "Monthly kWh",
-            ascending=False,
+            ascending=False
         ).head(5)
 
         for _, row in top.iterrows():
+
             share = (
-                (row["Monthly kWh"] / total_appliance_kwh * 100)
+                (
+                    row["Monthly kWh"]
+                    / total_appliance_kwh
+                    * 100
+                )
                 if total_appliance_kwh
                 else 0
             )
@@ -1056,7 +1442,8 @@ with right:
                 <div class="card">
                     <b>{row['Appliance']}</b><br>
                     <span class="small-muted">
-                    {row['Monthly kWh']:.1f} kWh/month • {money(row['Estimated Cost'])}
+                    {row['Monthly kWh']:.1f} kWh/month •
+                    {money(row['Estimated Cost'])}
                     • {share:.1f}% of entered appliance consumption
                     </span>
                 </div>
@@ -1064,30 +1451,41 @@ with right:
                 unsafe_allow_html=True,
             )
 
+
 st.markdown("---")
+
 
 # -----------------------------
 # Carbon footprint
 # -----------------------------
 st.markdown(
     '<div class="section-title">🌱 Carbon Footprint Estimate</div>',
-    unsafe_allow_html=True,
+    unsafe_allow_html=True
 )
 
 st.markdown(
     f"""
     <div class="carbon-card">
-        <div class="carbon-label">Estimated Carbon Footprint</div>
-        <div class="carbon-value">{estimated_co2:,.1f} kg CO₂e/month</div>
+
+        <div class="carbon-label">
+            Estimated Carbon Footprint
+        </div>
+
+        <div class="carbon-value">
+            {estimated_co2:,.1f} kg CO₂e/month
+        </div>
+
         <div class="carbon-note">
             Planning estimate using an illustrative grid factor of
-            {GRID_CO2_FACTOR:.2f} kg CO₂e/kWh. This is not an official
-            Pakistan grid-emissions factor.
+            {GRID_CO2_FACTOR:.2f} kg CO₂e/kWh.
+            This is not an official Pakistan grid-emissions factor.
         </div>
+
     </div>
     """,
     unsafe_allow_html=True,
 )
+
 
 # -----------------------------
 # AI specialist analysis
@@ -1096,8 +1494,9 @@ st.markdown("---")
 
 st.markdown(
     '<div class="section-title">🤖 Personalized AI Energy Audit</div>',
-    unsafe_allow_html=True,
+    unsafe_allow_html=True
 )
+
 
 user_data = {
     "city": city,
@@ -1113,8 +1512,10 @@ user_data = {
     "appliances": rows,
 }
 
+
 if "active_ai_section" not in st.session_state:
     st.session_state["active_ai_section"] = 0
+
 
 ai_names = [
     "🧠 Understanding",
@@ -1123,12 +1524,14 @@ ai_names = [
     "🔔 Monitoring & Alerts",
 ]
 
+
 ai_roles = [
     "Understanding Agent",
     "Energy Analysis Agent",
     "Saving Strategy Agent",
     "Monitoring & Alerting Agent",
 ]
+
 
 selected_name = st.radio(
     "AI audit modules",
@@ -1139,80 +1542,124 @@ selected_name = st.radio(
     key="ai_section_radio",
 )
 
-st.session_state["active_ai_section"] = ai_names.index(selected_name)
+
+st.session_state["active_ai_section"] = (
+    ai_names.index(selected_name)
+)
+
+
 active_idx = st.session_state["active_ai_section"]
-active_name = ai_names[active_idx].split(" ", 1)[-1]
+
+active_name = active_idx
+
+active_name = ai_names[active_idx].split(
+    " ",
+    1
+)[-1]
+
 active_role = ai_roles[active_idx]
 
+
 st.markdown(
-    f'<div class="ai-section-caption">{active_name} · AI specialist analysis based on your household data</div>',
-    unsafe_allow_html=True,
+    f'''
+    <div class="ai-section-caption">
+        {active_name} · AI specialist analysis based on your household data
+    </div>
+    ''',
+    unsafe_allow_html=True
 )
+
 
 if st.button(
     f"Generate {active_name} Analysis",
     key=f"generate_active_ai_{active_idx}",
     use_container_width=True,
 ):
-    with st.spinner(f"{active_role} is analyzing your data..."):
+
+    with st.spinner(
+        f"{active_role} is analyzing your data..."
+    ):
+
         result = run_ai_analysis(
             user_data,
-            active_role,
+            active_role
         )
 
-    st.session_state[f"ai_result_{active_idx}"] = result
+    st.session_state[
+        f"ai_result_{active_idx}"
+    ] = result
+
 
 saved_result = st.session_state.get(
     f"ai_result_{active_idx}"
 )
 
+
 if saved_result:
+
     st.markdown(saved_result)
 
     st.download_button(
         "⬇️ Download This Report",
         data=saved_result,
-        file_name=f"bijli_bachat_{ai_roles[active_idx].lower().replace(' ', '_').replace('&', 'and')}.txt",
+        file_name=(
+            f"bijli_bachat_"
+            f"{ai_roles[active_idx].lower()}"
+            f".replace(' ', '_')"
+            f".replace('&', 'and').txt"
+        ),
         mime="text/plain",
         key=f"download_ai_report_{active_idx}",
         use_container_width=True,
     )
 
+
 # -----------------------------
 # Floating Ask My Energy AI
 # -----------------------------
 with st.popover("🤖 Ask Energy AI"):
+
     st.markdown("### 💬 Energy Assistant")
+
     st.caption(
-        "Ask anything about your household energy data or optimization strategies."
+        "Ask anything about your household energy data "
+        "or optimization strategies."
     )
 
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = []
 
     for msg in st.session_state.chat_history[-6:]:
+
         with st.chat_message(msg["role"]):
             st.write(msg["content"])
 
+
     question = st.text_area(
         "Your question",
-        placeholder="e.g., Why is my bill so high? How can I reduce AC energy consumption?",
+        placeholder=(
+            "e.g., Why is my bill so high? "
+            "How can I reduce AC energy consumption?"
+        ),
         key="floating_energy_question",
         height=90,
     )
 
+
     if st.button(
         "Send to Energy AI",
         key="floating_send",
-        use_container_width=True,
+        use_container_width=True
     ):
+
         cleaned_q = question.strip().lower()
 
         if question.strip():
+
             st.session_state.chat_history.append(
                 {
                     "role": "user",
-                    "content": question.strip(),
+                    "content": question.strip()
                 }
             )
 
@@ -1229,34 +1676,47 @@ with st.popover("🤖 Ask Energy AI"):
                 "good evening",
             ]
 
+
             if (
                 cleaned_q in greetings
-                or cleaned_q.replace("i", "") in ["h", "hh", "hhh"]
+                or cleaned_q.replace("i", "")
+                in ["h", "hh", "hhh"]
             ):
+
                 answer = (
                     "Hello! I am your Energy Assistant. "
-                    "How can I help you optimize your household energy "
-                    "bill or manage your appliances today?"
+                    "How can I help you optimize your household "
+                    "energy bill or manage your appliances today?"
                 )
+
             else:
-                with st.spinner("Energy AI is analyzing your data..."):
+
+                with st.spinner(
+                    "Energy AI is analyzing your data..."
+                ):
+
                     answer = run_ai_analysis(
                         user_data,
                         "General Energy Assistant",
                         question.strip(),
                     )
 
+
             st.session_state.chat_history.append(
                 {
                     "role": "assistant",
-                    "content": answer,
+                    "content": answer
                 }
             )
 
             st.rerun()
 
         else:
-            st.warning("Please enter a question first.")
+
+            st.warning(
+                "Please enter a question first."
+            )
+
 
 # -----------------------------
 # Footer
@@ -1264,6 +1724,17 @@ with st.popover("🤖 Ask Energy AI"):
 st.markdown("---")
 
 st.markdown(
-    '<div style="color:#475569;font-size:.85rem;text-align:center;padding:1rem 0;">Bijli Bachat AI • Environment & Sustainability — Tech for Good • Hackathon MVP • Calculations are estimates based on user-provided data.</div>',
-    unsafe_allow_html=True,
+    '''
+    <div style="
+        color:#475569;
+        font-size:.85rem;
+        text-align:center;
+        padding:1rem 0;
+    ">
+        Bijli Bachat AI • Environment & Sustainability —
+        Tech for Good • Hackathon MVP •
+        Calculations are estimates based on user-provided data.
+    </div>
+    ''',
+    unsafe_allow_html=True
 )
