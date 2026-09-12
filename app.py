@@ -19,20 +19,12 @@ st.set_page_config(
 )
 
 # -----------------------------
-# Adaptive Professional UI styling (Light, Dark & System Theme Support)
+# Professional UI styling & Universal Theme Stability Fixes
 # -----------------------------
 st.markdown("""
 <style>
-    /* Main app theme adaptability */
-    @media (prefers-color-scheme: dark) {
-        .stApp {
-            background: linear-gradient(135deg, #0f172a 0%, #090d16 100%) !important;
-        }
-    }
-    @media (prefers-color-scheme: light) {
-        .stApp {
-            background: linear-gradient(135deg, #f8fafc 0%, #f0fdf4 100%) !important;
-        }
+    .stApp {
+        background: linear-gradient(135deg, #f8fafc 0%, #f0fdf4 100%);
     }
 
     /* Sidebar universal background and text color safety */
@@ -45,7 +37,7 @@ st.markdown("""
         color: #f8fafc !important;
     }
 
-    /* Universal Input Fields Visibility across all themes */
+    /* Universal Input Fields Visibility across Light, Dark & System themes */
     [data-testid="stSidebar"] input, 
     [data-testid="stSidebar"] select, 
     [data-testid="stSidebar"] textarea,
@@ -59,15 +51,19 @@ st.markdown("""
         border-radius: 8px !important;
     }
 
-    /* Number input plus/minus buttons visibility */
+    /* Universal Number Input Plus/Minus Buttons Visibility */
     [data-testid="stNumberInput"] button {
         background-color: #e2e8f0 !important;
         color: #0f172a !important;
         border: 1px solid #cbd5e1 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
     }
     [data-testid="stNumberInput"] button svg {
         fill: #0f172a !important;
         color: #0f172a !important;
+        opacity: 1 !important;
+        visibility: visible !important;
     }
     [data-testid="stNumberInput"] button:hover {
         background-color: #cbd5e1 !important;
