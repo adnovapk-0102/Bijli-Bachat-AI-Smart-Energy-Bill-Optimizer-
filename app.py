@@ -306,19 +306,27 @@ st.markdown("""
         box-shadow: 0 8px 25px rgba(15, 23, 42, .28) !important;
         padding: .7rem 1rem !important;
         font-weight: 750 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
         transition: all 0.2s ease-in-out !important;
     }
     [data-testid="stPopover"] > button p,
     [data-testid="stPopover"] > button span {
         color: #ffffff !important;
+        opacity: 1 !important;
+        visibility: visible !important;
     }
     
+    /* Lock hover, focus, active, and expanded states so it never disappears/turns invisible */
     [data-testid="stPopover"] > button:hover,
     [data-testid="stPopover"] > button:focus,
-    [data-testid="stPopover"] > button:active {
+    [data-testid="stPopover"] > button:active,
+    [data-testid="stPopover"] > button[aria-expanded="true"] {
         background: #166534 !important;
         border-color: #16a34a !important;
         color: #ffffff !important;
+        opacity: 1 !important;
+        visibility: visible !important;
         transform: translateY(-2px);
     }
     
@@ -327,20 +335,31 @@ st.markdown("""
     [data-testid="stPopover"] > button:focus p,
     [data-testid="stPopover"] > button:focus span,
     [data-testid="stPopover"] > button:active p,
-    [data-testid="stPopover"] > button:active span {
+    [data-testid="stPopover"] > button:active span,
+    [data-testid="stPopover"] > button[aria-expanded="true"] p,
+    [data-testid="stPopover"] > button[aria-expanded="true"] span {
         color: #ffffff !important;
+        opacity: 1 !important;
+        visibility: visible !important;
     }
 
-    /* Popover chat panel & Chat message text visibility fix */
+    /* Popover chat panel & Chat message text visibility and contrast fix */
     [data-testid="stPopoverBody"] {
         min-width: 360px !important;
         max-width: 430px !important;
     }
 
-    [data-testid="stChatMessage"] p, 
-    [data-testid="stChatMessage"] span, 
-    [data-testid="stChatMessage"] div {
+    [data-testid="stPopoverBody"] [data-testid="stChatMessage"] {
+        background-color: #f8fafc !important;
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 12px !important;
+    }
+
+    [data-testid="stPopoverBody"] [data-testid="stChatMessage"] p, 
+    [data-testid="stPopoverBody"] [data-testid="stChatMessage"] span, 
+    [data-testid="stPopoverBody"] [data-testid="stChatMessage"] div {
         color: #0f172a !important;
+        opacity: 1 !important;
     }
 
     /* General readable text */
