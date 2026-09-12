@@ -343,7 +343,7 @@ st.markdown("""
     }
 
     /* ---------------------------------------------------- */
-    /* POPOVER CHAT WINDOW CONTRAST & VISIBILITY FIXES      */
+    /* POPOVER CHAT WINDOW & TEXT AREA CONTRAST FIXES       */
     /* ---------------------------------------------------- */
     [data-testid="stPopoverBody"] {
         background-color: #ffffff !important;
@@ -371,6 +371,19 @@ st.markdown("""
     [data-testid="stPopoverBody"] [data-testid="stChatMessage"] span, 
     [data-testid="stPopoverBody"] [data-testid="stChatMessage"] div {
         color: #0f172a !important;
+        opacity: 1 !important;
+    }
+
+    /* Fix text area background and typed text color inside popover */
+    [data-testid="stPopoverBody"] textarea {
+        background-color: #ffffff !important;
+        color: #0f172a !important;
+        border: 1px solid #cbd5e1 !important;
+        border-radius: 8px !important;
+    }
+
+    [data-testid="stPopoverBody"] textarea::placeholder {
+        color: #94a3b8 !important;
         opacity: 1 !important;
     }
 
@@ -1011,7 +1024,6 @@ with st.popover("🤖 Ask Energy AI"):
                 {"role": "user", "content": question.strip()}
             )
             
-            # Intercept simple greetings to prevent heavy summary output
             greetings = ["hi", "hiii", "hiiii", "hello", "hey", "salam", "assalam-o-alaikum", "assalam o alaikum", "good morning", "good evening"]
             if cleaned_q in greetings or cleaned_q.replace("i", "") in ["h", "hh", "hhh"]:
                 answer = "Hello! I am your Energy Assistant. How can I help you optimize your household energy bill or manage your appliances today?"
