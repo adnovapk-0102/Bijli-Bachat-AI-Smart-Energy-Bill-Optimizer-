@@ -50,6 +50,20 @@ st.markdown("""
         border: 1px solid #cbd5e1 !important;
     }
 
+    /* Fix number input plus/minus buttons visibility */
+    [data-testid="stNumberInput"] button {
+        background-color: #e2e8f0 !important;
+        color: #0f172a !important;
+        border: 1px solid #cbd5e1 !important;
+    }
+    [data-testid="stNumberInput"] button svg {
+        fill: #0f172a !important;
+        color: #0f172a !important;
+    }
+    [data-testid="stNumberInput"] button:hover {
+        background-color: #cbd5e1 !important;
+    }
+
     /* File uploader box text & background styling */
     [data-testid="stFileUploader"] {
         background-color: rgba(255, 255, 255, 0.05) !important;
