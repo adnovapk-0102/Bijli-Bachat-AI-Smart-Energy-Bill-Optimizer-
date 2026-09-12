@@ -19,19 +19,85 @@ st.set_page_config(
 )
 
 # -----------------------------
-# Professional UI styling
+# Professional UI styling & Strict Dual-Theme Consistency Fixes
 # -----------------------------
 st.markdown("""
 <style>
-    .stApp {
-        background: linear-gradient(135deg, #f8fafc 0%, #f0fdf4 100%);
+    /* Force both light and dark system settings to inherit the exact same dashboard background */
+    @media (prefers-color-scheme: light), (prefers-color-scheme: dark) {
+        .stApp {
+            background: linear-gradient(135deg, #f8fafc 0%, #f0fdf4 100%) !important;
+        }
     }
 
+    /* Sidebar universal background and text color safety */
     [data-testid="stSidebar"] {
-        background: #0f172a;
+        background: #0f172a !important;
+        color-scheme: dark !important;
     }
-    [data-testid="stSidebar"] * {
+    [data-testid="stSidebar"] *, 
+    [data-testid="stSidebar"] label, 
+    [data-testid="stSidebar"] .stMarkdown,
+    [data-testid="stSidebar"] span,
+    [data-testid="stSidebar"] div {
         color: #f8fafc !important;
+    }
+
+    /* Universal Input Fields Permanent Styling across all themes */
+    [data-testid="stSidebar"] input, 
+    [data-testid="stSidebar"] select, 
+    [data-testid="stSidebar"] textarea,
+    [data-testid="stNumberInput"] input,
+    .stApp input, .stApp select, .stApp textarea {
+        background-color: #ffffff !important;
+        color: #0f172a !important;
+        -webkit-text-fill-color: #0f172a !important;
+        border: 1px solid #cbd5e1 !important;
+        border-radius: 8px !important;
+    }
+
+    /* Permanent Number Input Container & Plus/Minus Buttons Styling */
+    [data-testid="stNumberInput"] {
+        background-color: transparent !important;
+    }
+    [data-testid="stNumberInput"] > div {
+        background-color: #ffffff !important;
+        border: 1px solid #cbd5e1 !important;
+        border-radius: 8px !important;
+    }
+    [data-testid="stNumberInput"] input {
+        border: none !important;
+        background-color: transparent !important;
+    }
+    [data-testid="stNumberInput"] button {
+        background-color: #f1f5f9 !important;
+        color: #0f172a !important;
+        border-left: 1px solid #cbd5e1 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    [data-testid="stNumberInput"] button svg {
+        fill: #0f172a !important;
+        color: #0f172a !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    [data-testid="stNumberInput"] button:hover {
+        background-color: #e2e8f0 !important;
+    }
+
+    /* File uploader box text & background styling */
+    [data-testid="stFileUploader"] {
+        background-color: rgba(255, 255, 255, 0.05) !important;
+        border-radius: 12px;
+        padding: 0.5rem;
+    }
+    [data-testid="stFileUploader"] section {
+        background-color: #ffffff !important;
+        border: 1px dashed #94a3b8 !important;
+    }
+    [data-testid="stFileUploader"] section * {
+        color: #0f172a !important;
     }
 
     .hero {
