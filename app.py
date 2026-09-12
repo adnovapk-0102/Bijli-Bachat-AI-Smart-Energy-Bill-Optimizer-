@@ -19,7 +19,7 @@ st.set_page_config(
 )
 
 # -----------------------------
-# Professional UI styling & Permanent Theme-Locked Fixes
+# Professional UI styling & Theme Visibility Fixes
 # -----------------------------
 st.markdown("""
 <style>
@@ -37,7 +37,7 @@ st.markdown("""
         color: #f8fafc !important;
     }
 
-    /* Universal Input Fields Permanent Styling (Ignore system light/dark flips) */
+    /* Fix input fields visibility across Light and Dark themes */
     [data-testid="stSidebar"] input, 
     [data-testid="stSidebar"] select, 
     [data-testid="stSidebar"] textarea,
@@ -48,37 +48,6 @@ st.markdown("""
         color: #0f172a !important;
         -webkit-text-fill-color: #0f172a !important;
         border: 1px solid #cbd5e1 !important;
-        border-radius: 8px !important;
-    }
-
-    /* Permanent Number Input Container & Plus/Minus Buttons Styling */
-    [data-testid="stNumberInput"] {
-        background-color: transparent !important;
-    }
-    [data-testid="stNumberInput"] > div {
-        background-color: #ffffff !important;
-        border: 1px solid #cbd5e1 !important;
-        border-radius: 8px !important;
-    }
-    [data-testid="stNumberInput"] input {
-        border: none !important;
-        background-color: transparent !important;
-    }
-    [data-testid="stNumberInput"] button {
-        background-color: #f1f5f9 !important;
-        color: #0f172a !important;
-        border-left: 1px solid #cbd5e1 !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-    }
-    [data-testid="stNumberInput"] button svg {
-        fill: #0f172a !important;
-        color: #0f172a !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-    }
-    [data-testid="stNumberInput"] button:hover {
-        background-color: #e2e8f0 !important;
     }
 
     /* File uploader box text & background styling */
