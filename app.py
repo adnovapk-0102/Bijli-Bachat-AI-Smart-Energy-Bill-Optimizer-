@@ -317,7 +317,6 @@ st.markdown("""
         visibility: visible !important;
     }
     
-    /* Lock hover, focus, active, and expanded states so it never disappears/turns invisible */
     [data-testid="stPopover"] > button:hover,
     [data-testid="stPopover"] > button:focus,
     [data-testid="stPopover"] > button:active,
@@ -343,16 +342,29 @@ st.markdown("""
         visibility: visible !important;
     }
 
-    /* Popover chat panel & Chat message text visibility and contrast fix */
+    /* ---------------------------------------------------- */
+    /* POPOVER CHAT WINDOW CONTRAST & VISIBILITY FIXES      */
+    /* ---------------------------------------------------- */
     [data-testid="stPopoverBody"] {
-        min-width: 360px !important;
-        max-width: 430px !important;
+        background-color: #ffffff !important;
+        color: #0f172a !important;
+        min-width: 380px !important;
+        max-width: 440px !important;
+        padding: 1.2rem !important;
+        border-radius: 16px !important;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, .2) !important;
+    }
+
+    [data-testid="stPopoverBody"] * {
+        color: #0f172a !important;
     }
 
     [data-testid="stPopoverBody"] [data-testid="stChatMessage"] {
         background-color: #f8fafc !important;
         border: 1px solid #e2e8f0 !important;
         border-radius: 12px !important;
+        margin-bottom: 0.5rem !important;
+        padding: 0.5rem !important;
     }
 
     [data-testid="stPopoverBody"] [data-testid="stChatMessage"] p, 
@@ -519,7 +531,6 @@ Do not claim to monitor live electricity data; this MVP only uses user-entered d
 """,
         "General Energy Assistant": """
 You are a helpful energy-efficiency advisor.
-If the user says a simple greeting like 'Hi', 'Hello', or 'Salam', respond with a short, polite, professional greeting and ask how you can help optimize their energy bill or appliances today. Do not provide a full energy summary unless asked.
 Answer any specific energy questions using only the supplied household data.
 Be concise, practical and honest about estimates and uncertainty.
 """,
@@ -994,16 +1005,24 @@ with st.popover("🤖 Ask Energy AI"):
     )
 
     if st.button("Send to Energy AI", key="floating_send", use_container_width=True):
+        cleaned_q = question.strip().lower()
         if question.strip():
             st.session_state.chat_history.append(
                 {"role": "user", "content": question.strip()}
             )
-            with st.spinner("Energy AI is analyzing your data..."):
-                answer = run_ai_analysis(
-                    user_data,
-                    "General Energy Assistant",
-                    question.strip(),
-                )
+            
+            # Intercept simple greetings to prevent heavy summary output
+            greetings = ["hi", "hiii", "hiiii", "hello", "hey", "salam", "assalam-o-alaikum", "assalam o alaikum", "good morning", "good evening"]
+            if cleaned_q in greetings or cleaned_q.replace("i", "") in ["h", "hh", "hhh"]:
+                answer = "Hello! I am your Energy Assistant. How can I help you optimize your household energy bill or manage your appliances today?"
+            else:
+                with st.spinner("Energy AI is analyzing your data..."):
+                    answer = run_ai_analysis(
+                        user_data,
+                        "General Energy Assistant",
+                        question.strip(),
+                    )
+            
             st.session_state.chat_history.append(
                 {"role": "assistant", "content": answer}
             )
