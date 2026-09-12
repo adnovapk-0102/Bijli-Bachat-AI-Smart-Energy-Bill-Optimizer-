@@ -19,12 +19,20 @@ st.set_page_config(
 )
 
 # -----------------------------
-# Professional UI styling & Theme Visibility Fixes
+# Adaptive Professional UI styling (Light, Dark & System Theme Support)
 # -----------------------------
 st.markdown("""
 <style>
-    .stApp {
-        background: linear-gradient(135deg, #f8fafc 0%, #f0fdf4 100%);
+    /* Main app theme adaptability */
+    @media (prefers-color-scheme: dark) {
+        .stApp {
+            background: linear-gradient(135deg, #0f172a 0%, #090d16 100%) !important;
+        }
+    }
+    @media (prefers-color-scheme: light) {
+        .stApp {
+            background: linear-gradient(135deg, #f8fafc 0%, #f0fdf4 100%) !important;
+        }
     }
 
     /* Sidebar universal background and text color safety */
@@ -37,7 +45,7 @@ st.markdown("""
         color: #f8fafc !important;
     }
 
-    /* Fix input fields visibility across Light and Dark themes */
+    /* Universal Input Fields Visibility across all themes */
     [data-testid="stSidebar"] input, 
     [data-testid="stSidebar"] select, 
     [data-testid="stSidebar"] textarea,
@@ -48,9 +56,10 @@ st.markdown("""
         color: #0f172a !important;
         -webkit-text-fill-color: #0f172a !important;
         border: 1px solid #cbd5e1 !important;
+        border-radius: 8px !important;
     }
 
-    /* Fix number input plus/minus buttons visibility */
+    /* Number input plus/minus buttons visibility */
     [data-testid="stNumberInput"] button {
         background-color: #e2e8f0 !important;
         color: #0f172a !important;
