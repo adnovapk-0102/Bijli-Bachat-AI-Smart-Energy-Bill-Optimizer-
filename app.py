@@ -4,26 +4,6 @@ from datetime import datetime
 
 import pandas as pd
 import streamlit as st
-
-
-st.markdown("""
-<style>
-/* Keep Download button text visible after click/focus/active states */
-div[data-testid="stDownloadButton"] button,
-div[data-testid="stDownloadButton"] button p,
-div[data-testid="stDownloadButton"] button span {
-    color: #111111 !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-}
-div[data-testid="stDownloadButton"] button:hover,
-div[data-testid="stDownloadButton"] button:focus,
-div[data-testid="stDownloadButton"] button:active {
-    color: #111111 !important;
-}
-</style>
-""", unsafe_allow_html=True)
-
 from google import genai
 
 # ============================================================
@@ -278,8 +258,11 @@ st.markdown("""
         .snapshot-grid { grid-template-columns: 1fr; }
     }
 
-    /* Strong contrast for all main action buttons */
-    div.stButton > button {
+    /* ---------------------------------------------------- */
+    /* BUTTON STYLING FIXES (DOWNLOAD & MAIN BUTTONS)       */
+    /* ---------------------------------------------------- */
+    div.stButton > button,
+    div[data-testid="stDownloadButton"] > button {
         background: #0f172a !important;
         color: #ffffff !important;
         border: 1px solid #0f172a !important;
@@ -288,17 +271,24 @@ st.markdown("""
         min-height: 2.8rem;
     }
     div.stButton > button p,
-    div.stButton > button span {
+    div.stButton > button span,
+    div[data-testid="stDownloadButton"] > button p,
+    div[data-testid="stDownloadButton"] > button span {
         color: #ffffff !important;
         opacity: 1 !important;
+        visibility: visible !important;
     }
-    div.stButton > button:hover {
+    div.stButton > button:hover,
+    div[data-testid="stDownloadButton"] > button:hover {
         background: #166534 !important;
         border-color: #166534 !important;
         box-shadow: 0 6px 18px rgba(22, 101, 52, .18) !important;
+        color: #ffffff !important;
     }
 
-    /* Floating AI assistant button */
+    /* ---------------------------------------------------- */
+    /* FLOATING AI ASSISTANT POPOVER BUTTON FIXES           */
+    /* ---------------------------------------------------- */
     [data-testid="stPopover"] > button {
         position: fixed !important;
         right: 24px !important;
@@ -311,9 +301,22 @@ st.markdown("""
         box-shadow: 0 8px 25px rgba(15, 23, 42, .28) !important;
         padding: .7rem 1rem !important;
         font-weight: 750 !important;
+        transition: all 0.2s ease-in-out !important;
     }
     [data-testid="stPopover"] > button p,
     [data-testid="stPopover"] > button span {
+        color: #ffffff !important;
+    }
+    
+    /* Hover state for Popover */
+    [data-testid="stPopover"] > button:hover {
+        background: #166534 !important;
+        border-color: #16a34a !important;
+        color: #ffffff !important;
+        transform: translateY(-2px);
+    }
+    [data-testid="stPopover"] > button:hover p,
+    [data-testid="stPopover"] > button:hover span {
         color: #ffffff !important;
     }
 
