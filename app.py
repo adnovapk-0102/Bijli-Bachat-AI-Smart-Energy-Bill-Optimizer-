@@ -27,12 +27,82 @@ st.markdown("""
         background: linear-gradient(135deg, #f8fafc 0%, #f0fdf4 100%);
     }
 
-    [data-testid="stSidebar"] {
-        background: #0f172a;
-    }
-    [data-testid="stSidebar"] * {
-        color: #f8fafc !important;
-    }
+   [data-testid="stSidebar"] {
+    background: #0f172a;
+}
+
+/* Sidebar labels, headings and normal text */
+[data-testid="stSidebar"] label,
+[data-testid="stSidebar"] h1,
+[data-testid="stSidebar"] h2,
+[data-testid="stSidebar"] h3,
+[data-testid="stSidebar"] h4,
+[data-testid="stSidebar"] p,
+[data-testid="stSidebar"] span {
+    color: #f8fafc !important;
+}
+
+/* Sidebar input fields */
+[data-testid="stSidebar"] input,
+[data-testid="stSidebar"] textarea {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    -webkit-text-fill-color: #0f172a !important;
+    border: 1px solid #cbd5e1 !important;
+}
+
+/* Placeholder text */
+[data-testid="stSidebar"] input::placeholder,
+[data-testid="stSidebar"] textarea::placeholder {
+    color: #64748b !important;
+    -webkit-text-fill-color: #64748b !important;
+    opacity: 1 !important;
+}
+
+/* Number input text */
+[data-testid="stSidebar"] [data-testid="stNumberInput"] input {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    -webkit-text-fill-color: #0f172a !important;
+}
+
+/* Text input */
+[data-testid="stSidebar"] [data-testid="stTextInput"] input {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    -webkit-text-fill-color: #0f172a !important;
+}
+
+/* Select boxes */
+[data-testid="stSidebar"] [data-testid="stSelectbox"] > div,
+[data-testid="stSidebar"] [data-baseweb="select"] {
+    color: #0f172a !important;
+}
+
+/* Selectbox selected value */
+[data-testid="stSidebar"] [data-baseweb="select"] span {
+    color: #0f172a !important;
+}
+
+/* Upload area */
+[data-testid="stSidebar"] [data-testid="stFileUploader"] {
+    color: #f8fafc !important;
+}
+
+[data-testid="stSidebar"] [data-testid="stFileUploader"] section {
+    background-color: rgba(255,255,255,0.08) !important;
+    border-color: rgba(255,255,255,0.25) !important;
+}
+
+[data-testid="stSidebar"] [data-testid="stFileUploader"] button {
+    color: #0f172a !important;
+}
+
+/* Number input +/- buttons */
+[data-testid="stSidebar"] [data-testid="stNumberInput"] button {
+    color: #0f172a !important;
+    background-color: #ffffff !important;
+}
 
     .hero {
         padding: 2rem 2.2rem;
