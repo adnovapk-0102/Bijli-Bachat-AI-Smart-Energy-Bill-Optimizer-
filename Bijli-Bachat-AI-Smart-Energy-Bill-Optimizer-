@@ -1,0 +1,66 @@
+# ⚡ Bijli Bachat AI
+
+### Smart Energy & Bill Optimizer
+
+**Bijli Bachat AI** is an AI-powered web application designed to help households understand their electricity consumption, identify high-energy-consuming appliances, and receive practical insights for improving energy efficiency.
+
+## 🌱 The Problem
+
+Rising electricity costs and limited awareness make it difficult for households to understand where their electricity is being consumed.
+
+Many people know how much their electricity bill is, but they often don't know **which appliances are consuming the most energy** or what actions they can take to improve efficiency.
+
+## 💡 Our Solution
+
+Bijli Bachat AI analyzes household and appliance information and uses AI-powered analysis to provide clear, personalized energy insights and practical recommendations.
+
+## ✨ Key Features
+
+- 🏠 **Household Profile**  
+  Enter household information, electricity usage details, and appliance data.
+
+- 📊 **Your Energy Snapshot**  
+  Get a quick overview of the household's energy situation and important insights.
+
+- 🔌 **Appliance Energy Audit**  
+  Analyze estimated energy consumption across household appliances.
+
+- ⚡ **Highest Energy Consumers**  
+  Identify which appliances are contributing the most to estimated electricity consumption.
+
+- 🌱 **Carbon Footprint Estimate**  
+  Estimate the household's monthly carbon footprint based on electricity consumption.
+
+- 🤖 **Personalized AI Energy Audit**  
+  Get AI-powered analysis through four specialized analysis areas:
+  - 🧠 Understanding
+  - ⚡ Energy Analysis
+  - 💡 Saving Strategy
+  - 🔔 Monitoring & Alerts
+
+- 💬 **Ask Energy AI**  
+  Ask questions about household energy usage and receive personalized AI-powered guidance.
+
+## 🧠 AI Workflow
+
+The application uses four focused AI analysis roles:
+
+**Understanding → Energy Analysis → Saving Strategy → Monitoring & Alerts**
+
+These work together to transform household energy data into understandable insights and practical recommendations.
+
+## 🛠️ Tech Stack
+
+- Python
+- Streamlit
+- Google Gemini 3.6 Flash
+- Pandas
+- GitHub
+- Streamlit Cloud
+
+## 🚀 Run Locally
+
+Clone the repository:
+
+```bash
+git clone <YOUR-REPOSITORY-URL>
