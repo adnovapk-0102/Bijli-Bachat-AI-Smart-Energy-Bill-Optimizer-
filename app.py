@@ -278,8 +278,13 @@ st.markdown("""
         opacity: 1 !important;
         visibility: visible !important;
     }
+    
     div.stButton > button:hover,
-    div[data-testid="stDownloadButton"] > button:hover {
+    div.stButton > button:focus,
+    div.stButton > button:active,
+    div[data-testid="stDownloadButton"] > button:hover,
+    div[data-testid="stDownloadButton"] > button:focus,
+    div[data-testid="stDownloadButton"] > button:active {
         background: #166534 !important;
         border-color: #166534 !important;
         box-shadow: 0 6px 18px rgba(22, 101, 52, .18) !important;
@@ -308,22 +313,34 @@ st.markdown("""
         color: #ffffff !important;
     }
     
-    /* Hover state for Popover */
-    [data-testid="stPopover"] > button:hover {
+    [data-testid="stPopover"] > button:hover,
+    [data-testid="stPopover"] > button:focus,
+    [data-testid="stPopover"] > button:active {
         background: #166534 !important;
         border-color: #16a34a !important;
         color: #ffffff !important;
         transform: translateY(-2px);
     }
+    
     [data-testid="stPopover"] > button:hover p,
-    [data-testid="stPopover"] > button:hover span {
+    [data-testid="stPopover"] > button:hover span,
+    [data-testid="stPopover"] > button:focus p,
+    [data-testid="stPopover"] > button:focus span,
+    [data-testid="stPopover"] > button:active p,
+    [data-testid="stPopover"] > button:active span {
         color: #ffffff !important;
     }
 
-    /* Popover chat panel */
+    /* Popover chat panel & Chat message text visibility fix */
     [data-testid="stPopoverBody"] {
         min-width: 360px !important;
         max-width: 430px !important;
+    }
+
+    [data-testid="stChatMessage"] p, 
+    [data-testid="stChatMessage"] span, 
+    [data-testid="stChatMessage"] div {
+        color: #0f172a !important;
     }
 
     /* General readable text */
@@ -483,7 +500,8 @@ Do not claim to monitor live electricity data; this MVP only uses user-entered d
 """,
         "General Energy Assistant": """
 You are a helpful energy-efficiency advisor.
-Answer the user's question using only the supplied household data.
+If the user says a simple greeting like 'Hi', 'Hello', or 'Salam', respond with a short, polite, professional greeting and ask how you can help optimize their energy bill or appliances today. Do not provide a full energy summary unless asked.
+Answer any specific energy questions using only the supplied household data.
 Be concise, practical and honest about estimates and uncertainty.
 """,
     }
@@ -540,9 +558,6 @@ st.caption(
 # -----------------------------
 # Sidebar inputs
 # -----------------------------
-# Apply values extracted on the previous run before the corresponding widgets
-# are created. This lets the upload reader fill the existing manual fields
-# without changing the rest of the household workflow.
 for source_key, widget_key in [
     ("latest_bill_extracted_amount", "monthly_bill_input"),
     ("latest_bill_extracted_units", "monthly_units_input"),
@@ -708,12 +723,8 @@ if previous_bill > 0 and monthly_bill > 0:
 else:
     bill_change_pct = None
 
-# Backward-compatible name used by older parts of the app.
 change_pct = units_change_pct
-
-# CO2 estimate: clearly labelled as an approximate scenario assumption.
-# Users can change this later when a verified local grid factor is available.
-GRID_CO2_FACTOR = 0.40  # kg CO2e per kWh; illustrative estimate, not a Pakistan official factor.
+GRID_CO2_FACTOR = 0.40
 estimated_co2 = monthly_units * GRID_CO2_FACTOR
 
 # -----------------------------
@@ -724,9 +735,6 @@ if analyze or "analyzed" not in st.session_state:
 
 st.markdown('<div class="section-title">📊 Your Energy Snapshot</div>', unsafe_allow_html=True)
 
-# Status logic is intentionally conservative:
-# green = improvement, red = material increase, amber = needs attention,
-# neutral = insufficient comparison data.
 def status_card(title, value, status, status_text):
     return f"""
     <div class="snapshot-card {status}">
@@ -786,7 +794,6 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# A single, easy-to-read alert banner for the judge/demo.
 if bill_change_pct is not None and bill_change_pct >= 10 and units_change_pct is not None and units_change_pct <= 0:
     st.markdown(
         f'<div class="warning-card">⚠️ <b>Bill Alert:</b> your bill increased by <b>{bill_change_pct:.1f}%</b> while your units did not increase. This can happen because of tariff slabs, taxes, fixed charges or other bill components, so review the bill details before blaming appliance usage.</div>',
@@ -891,8 +898,6 @@ user_data = {
     "appliances": rows,
 }
 
-# Compact text navigation. We use a radio control styled as simple text tabs
-# instead of large buttons, avoiding the invisible-label issue from the old tabs.
 if "active_ai_section" not in st.session_state:
     st.session_state["active_ai_section"] = 0
 
@@ -951,11 +956,9 @@ if saved_result:
 # -----------------------------
 # Floating Ask My Energy AI
 # -----------------------------
-# The assistant is intentionally a floating popover rather than a full-width
-# dashboard section, keeping the main dashboard clean for demos and judges.
 with st.popover("🤖 Ask Energy AI"):
     st.markdown("### 💬 Energy Assistant")
-    st.caption("Ask anything about your household energy data. You can ask in English, Urdu, or Roman Urdu.")
+    st.caption("Ask anything about your household energy data or optimization strategies.")
 
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = []
@@ -966,7 +969,7 @@ with st.popover("🤖 Ask Energy AI"):
 
     question = st.text_area(
         "Your question",
-        placeholder="Example: Mera bill itna high kyun hai? AC ka usage kaise kam karun?",
+        placeholder="e.g., Why is my bill so high? How can I reduce AC energy consumption?",
         key="floating_energy_question",
         height=90,
     )
