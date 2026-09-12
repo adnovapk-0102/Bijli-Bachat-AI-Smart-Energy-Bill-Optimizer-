@@ -390,52 +390,6 @@ def build_ai_client():
     return genai.Client(api_key=key)
 
 
-def extract_bill_data(uploaded_file, bill_type):
-    """Read a supported electricity-bill image/PDF with Gemini and return structured fields."""
-    client = build_ai_client()
-    if client is None:
-        return None, "AI is not connected. Add GEMINI_API_KEY in Streamlit Secrets."
-
-    try:
-        uploaded_file.seek(0)
-        bill_part = genai.types.Part.from_bytes(
-            data=uploaded_file.getvalue(),
-            mime_type=uploaded_file.type or "application/octet-stream",
-        )
-
-        prompt = f"""
-You are extracting data from a Pakistani electricity bill.
-This is the {bill_type} electricity bill.
-
-Read ONLY information that is visibly present in the uploaded document.
-Do not guess, infer, calculate, or invent missing values.
-
-Return ONLY valid JSON with exactly these keys:
-{{
-  "bill_amount_pkr": number or null,
-  "units_kwh": number or null
-}}
-
-For bill_amount_pkr, use the final/current payable bill amount or total bill amount
-that best represents the amount the household pays for this bill.
-For units_kwh, use the billed electricity consumption/units (kWh) for this bill.
-If a value is not clearly available, return null.
-"""
-        response = client.models.generate_content(
-            model="gemini-3.6-flash",
-            contents=[bill_part, prompt],
-        )
-
-        text = (response.text or "").strip()
-        if text.startswith("```"):
-            text = text.replace("```json", "", 1).replace("```", "", 1).strip()
-
-        data = json.loads(text)
-        return data, None
-    except Exception as exc:
-        return None, f"Could not read the uploaded bill: {exc}"
-
-
 # ============================================================
 # Four AI "agent roles"
 # These are prompt-based specialist modules, NOT autonomous agents.
@@ -535,17 +489,6 @@ st.caption(
 # -----------------------------
 # Sidebar inputs
 # -----------------------------
-# Apply values extracted on the previous run before the corresponding widgets
-# are created. This lets the upload reader fill the existing manual fields
-# without changing the rest of the household workflow.
-for source_key, widget_key in [
-    ("latest_bill_extracted_amount", "monthly_bill_input"),
-    ("latest_bill_extracted_units", "monthly_units_input"),
-    ("previous_bill_extracted_amount", "previous_bill_input"),
-    ("previous_bill_extracted_units", "previous_units_input"),
-]:
-    if source_key in st.session_state:
-        st.session_state[widget_key] = st.session_state.pop(source_key)
 
 with st.sidebar:
     st.markdown("## 🏠 Household Profile")
@@ -560,35 +503,6 @@ with st.sidebar:
         step=500.0,
         key="monthly_bill_input",
     )
-    latest_bill_file = st.file_uploader(
-        "Upload latest electricity bill (optional)",
-        type=["png", "jpg", "jpeg", "webp"],
-        key="latest_bill_file",
-        help="Upload a clear bill image or PDF and the app will try to read the bill amount and units automatically.",
-    )
-    if st.button(
-        "Read Latest Bill",
-        key="read_latest_bill",
-        use_container_width=True,
-        disabled=latest_bill_file is None,
-    ):
-        with st.spinner("Reading the latest electricity bill..."):
-            extracted, error = extract_bill_data(latest_bill_file, "latest")
-        if error:
-            st.error(error)
-        else:
-            if extracted.get("bill_amount_pkr") is not None:
-                st.session_state["latest_bill_extracted_amount"] = safe_float(
-                    extracted["bill_amount_pkr"], st.session_state.get("monthly_bill_input", 25000.0)
-                )
-            if extracted.get("units_kwh") is not None:
-                st.session_state["latest_bill_extracted_units"] = safe_float(
-                    extracted["units_kwh"], st.session_state.get("monthly_units_input", 300.0)
-                )
-            st.session_state["latest_bill_extracted"] = True
-            st.success("Latest bill details were read. The detected amount/units have been filled into the fields.")
-            st.rerun()
-
     previous_bill = st.number_input(
         "Previous month's electricity bill (optional)",
         min_value=0.0,
@@ -597,35 +511,6 @@ with st.sidebar:
         key="previous_bill_input",
         help="Enter the previous bill amount to enable bill-over-bill alerts.",
     )
-    previous_bill_file = st.file_uploader(
-        "Upload previous month's electricity bill (optional)",
-        type=["png", "jpg", "jpeg", "webp"],
-        key="previous_bill_file",
-        help="Upload a clear bill image or PDF and the app will try to read the bill amount and units automatically.",
-    )
-    if st.button(
-        "Read Previous Bill",
-        key="read_previous_bill",
-        use_container_width=True,
-        disabled=previous_bill_file is None,
-    ):
-        with st.spinner("Reading the previous electricity bill..."):
-            extracted, error = extract_bill_data(previous_bill_file, "previous month")
-        if error:
-            st.error(error)
-        else:
-            if extracted.get("bill_amount_pkr") is not None:
-                st.session_state["previous_bill_extracted_amount"] = safe_float(
-                    extracted["bill_amount_pkr"], st.session_state.get("previous_bill_input", 0.0)
-                )
-            if extracted.get("units_kwh") is not None:
-                st.session_state["previous_bill_extracted_units"] = safe_float(
-                    extracted["units_kwh"], st.session_state.get("previous_units_input", 0.0)
-                )
-            st.session_state["previous_bill_extracted"] = True
-            st.success("Previous bill details were read. The detected amount/units have been filled into the fields.")
-            st.rerun()
-
     monthly_units = st.number_input(
         "Latest monthly units (kWh)",
         min_value=0.0,
