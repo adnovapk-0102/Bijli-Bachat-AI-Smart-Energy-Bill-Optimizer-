@@ -27,11 +27,79 @@ st.markdown("""
         background: linear-gradient(135deg, #f8fafc 0%, #f0fdf4 100%);
     }
 
+    /* ===================================================== */
+    /* SIDEBAR / HOUSEHOLD PROFILE — THEME AWARE            */
+    /* ===================================================== */
+
     [data-testid="stSidebar"] {
         background: #0f172a;
     }
+
+    /* Dark mode */
     [data-testid="stSidebar"] * {
         color: #f8fafc !important;
+    }
+
+    [data-testid="stSidebar"] input,
+    [data-testid="stSidebar"] textarea {
+        color: #f8fafc !important;
+        -webkit-text-fill-color: #f8fafc !important;
+    }
+
+    [data-testid="stSidebar"] input::placeholder,
+    [data-testid="stSidebar"] textarea::placeholder {
+        color: #cbd5e1 !important;
+        opacity: 1 !important;
+    }
+
+    [data-testid="stSidebar"] [data-baseweb="select"] *,
+    [data-testid="stSidebar"] [data-baseweb="input"] *,
+    [data-testid="stSidebar"] [data-testid="stNumberInput"] * {
+        color: #f8fafc !important;
+        -webkit-text-fill-color: #f8fafc !important;
+    }
+
+    [data-testid="stSidebar"] button {
+        color: #f8fafc !important;
+    }
+
+    /* Light mode */
+    @media (prefers-color-scheme: light) {
+        [data-testid="stSidebar"] {
+            background: #ffffff !important;
+        }
+
+        [data-testid="stSidebar"] * {
+            color: #0f172a !important;
+        }
+
+        [data-testid="stSidebar"] input,
+        [data-testid="stSidebar"] textarea {
+            color: #0f172a !important;
+            -webkit-text-fill-color: #0f172a !important;
+        }
+
+        [data-testid="stSidebar"] input::placeholder,
+        [data-testid="stSidebar"] textarea::placeholder {
+            color: #64748b !important;
+            opacity: 1 !important;
+        }
+
+        [data-testid="stSidebar"] [data-baseweb="select"] *,
+        [data-testid="stSidebar"] [data-baseweb="input"] *,
+        [data-testid="stSidebar"] [data-testid="stNumberInput"] * {
+            color: #0f172a !important;
+            -webkit-text-fill-color: #0f172a !important;
+        }
+
+        [data-testid="stSidebar"] button {
+            color: #0f172a !important;
+        }
+
+        [data-testid="stSidebar"] svg {
+            fill: #0f172a !important;
+            color: #0f172a !important;
+        }
     }
 
     .hero {
@@ -42,8 +110,18 @@ st.markdown("""
         margin-bottom: 1.2rem;
         box-shadow: 0 12px 35px rgba(15, 23, 42, .18);
     }
-    .hero h1 { margin: 0; font-size: 2.5rem; color: #ffffff !important; }
-    .hero p { margin: .55rem 0 0; color: #dbeafe !important; font-size: 1.05rem; }
+
+    .hero h1 {
+        margin: 0;
+        font-size: 2.5rem;
+        color: #ffffff !important;
+    }
+
+    .hero p {
+        margin: .55rem 0 0;
+        color: #dbeafe !important;
+        font-size: 1.05rem;
+    }
 
     .card {
         background: #ffffff;
@@ -55,8 +133,16 @@ st.markdown("""
         color: #0f172a !important;
     }
 
-    .metric-title { color: #475569 !important; font-size: .86rem; }
-    .metric-value { color: #0f172a !important; font-size: 1.55rem; font-weight: 750; }
+    .metric-title {
+        color: #475569 !important;
+        font-size: .86rem;
+    }
+
+    .metric-value {
+        color: #0f172a !important;
+        font-size: 1.55rem;
+        font-weight: 750;
+    }
 
     .badge {
         display: inline-block;
@@ -105,7 +191,10 @@ st.markdown("""
         margin-top: .6rem;
     }
 
-    .small-muted { color: #475569 !important; font-size: .88rem; }
+    .small-muted {
+        color: #475569 !important;
+        font-size: .88rem;
+    }
 
     .warning-card {
         border-left: 5px solid #f59e0b;
@@ -245,22 +334,38 @@ st.markdown("""
         font-weight: 750;
     }
 
-    .snapshot-card.good .snapshot-status { color: #166534 !important; }
-    .snapshot-card.alert .snapshot-status { color: #b91c1c !important; }
-    .snapshot-card.neutral .snapshot-status { color: #475569 !important; }
-    .snapshot-card.warning .snapshot-status { color: #92400e !important; }
+    .snapshot-card.good .snapshot-status {
+        color: #166534 !important;
+    }
+
+    .snapshot-card.alert .snapshot-status {
+        color: #b91c1c !important;
+    }
+
+    .snapshot-card.neutral .snapshot-status {
+        color: #475569 !important;
+    }
+
+    .snapshot-card.warning .snapshot-status {
+        color: #92400e !important;
+    }
 
     @media (max-width: 900px) {
-        .snapshot-grid { grid-template-columns: repeat(2, 1fr); }
+        .snapshot-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
     }
 
     @media (max-width: 600px) {
-        .snapshot-grid { grid-template-columns: 1fr; }
+        .snapshot-grid {
+            grid-template-columns: 1fr;
+        }
     }
 
     /* ---------------------------------------------------- */
     /* BUTTON STYLING FIXES (DOWNLOAD & MAIN BUTTONS)       */
     /* ---------------------------------------------------- */
+
     div.stButton > button,
     div[data-testid="stDownloadButton"] > button {
         background: #0f172a !important;
@@ -270,6 +375,7 @@ st.markdown("""
         font-weight: 700 !important;
         min-height: 2.8rem;
     }
+
     div.stButton > button p,
     div.stButton > button span,
     div[data-testid="stDownloadButton"] > button p,
@@ -278,7 +384,7 @@ st.markdown("""
         opacity: 1 !important;
         visibility: visible !important;
     }
-    
+
     div.stButton > button:hover,
     div.stButton > button:focus,
     div.stButton > button:active,
@@ -294,6 +400,7 @@ st.markdown("""
     /* ---------------------------------------------------- */
     /* FLOATING AI ASSISTANT POPOVER BUTTON FIXES           */
     /* ---------------------------------------------------- */
+
     [data-testid="stPopover"] > button {
         position: fixed !important;
         right: 24px !important;
@@ -310,13 +417,14 @@ st.markdown("""
         visibility: visible !important;
         transition: all 0.2s ease-in-out !important;
     }
+
     [data-testid="stPopover"] > button p,
     [data-testid="stPopover"] > button span {
         color: #ffffff !important;
         opacity: 1 !important;
         visibility: visible !important;
     }
-    
+
     [data-testid="stPopover"] > button:hover,
     [data-testid="stPopover"] > button:focus,
     [data-testid="stPopover"] > button:active,
@@ -328,7 +436,7 @@ st.markdown("""
         visibility: visible !important;
         transform: translateY(-2px);
     }
-    
+
     [data-testid="stPopover"] > button:hover p,
     [data-testid="stPopover"] > button:hover span,
     [data-testid="stPopover"] > button:focus p,
@@ -345,6 +453,7 @@ st.markdown("""
     /* ---------------------------------------------------- */
     /* POPOVER CHAT WINDOW & TEXT AREA CONTRAST FIXES       */
     /* ---------------------------------------------------- */
+
     [data-testid="stPopoverBody"] {
         background-color: #ffffff !important;
         color: #0f172a !important;
@@ -367,8 +476,8 @@ st.markdown("""
         padding: 0.5rem !important;
     }
 
-    [data-testid="stPopoverBody"] [data-testid="stChatMessage"] p, 
-    [data-testid="stPopoverBody"] [data-testid="stChatMessage"] span, 
+    [data-testid="stPopoverBody"] [data-testid="stChatMessage"] p,
+    [data-testid="stPopoverBody"] [data-testid="stChatMessage"] span,
     [data-testid="stPopoverBody"] [data-testid="stChatMessage"] div {
         color: #0f172a !important;
         opacity: 1 !important;
@@ -388,7 +497,10 @@ st.markdown("""
     }
 
     /* General readable text */
-    .stMarkdown, .stText, label, [data-testid="stMetricLabel"],
+    .stMarkdown,
+    .stText,
+    label,
+    [data-testid="stMetricLabel"],
     [data-testid="stMetricValue"] {
         color: #0f172a;
     }
@@ -776,7 +888,11 @@ estimated_co2 = monthly_units * GRID_CO2_FACTOR
 if analyze or "analyzed" not in st.session_state:
     st.session_state["analyzed"] = True
 
-st.markdown('<div class="section-title">📊 Your Energy Snapshot</div>', unsafe_allow_html=True)
+st.markdown(
+    '<div class="section-title">📊 Your Energy Snapshot</div>',
+    unsafe_allow_html=True,
+)
+
 
 def status_card(title, value, status, status_text):
     return f"""
@@ -786,6 +902,7 @@ def status_card(title, value, status, status_text):
         <div class="snapshot-status">{status_text}</div>
     </div>
     """
+
 
 if units_change_pct is None:
     units_status, units_text = "neutral", "No previous units entered"
@@ -806,24 +923,45 @@ else:
     bill_status, bill_text = "warning", f"↑ {bill_change_pct:.1f}% — monitor bill"
 
 if total_appliance_kwh <= monthly_units * 0.75:
-    appliance_status, appliance_text = "good", "Appliance estimate is within bill units"
+    appliance_status, appliance_text = (
+        "good",
+        "Appliance estimate is within bill units",
+    )
 elif monthly_units > 0 and total_appliance_kwh > monthly_units * 1.05:
-    appliance_status, appliance_text = "alert", "Entered appliance use exceeds bill units"
+    appliance_status, appliance_text = (
+        "alert",
+        "Entered appliance use exceeds bill units",
+    )
 else:
-    appliance_status, appliance_text = "warning", "Review appliance usage estimate"
+    appliance_status, appliance_text = (
+        "warning",
+        "Review appliance usage estimate",
+    )
 
 if units_change_pct is None and bill_change_pct is None:
-    trend_status, trend_text = "neutral", "Add previous bill + units for alerts"
+    trend_status, trend_text = (
+        "neutral",
+        "Add previous bill + units for alerts",
+    )
 elif (units_change_pct is not None and units_change_pct >= 10) or (
     bill_change_pct is not None and bill_change_pct >= 10
 ):
-    trend_status, trend_text = "alert", "High-priority review recommended"
+    trend_status, trend_text = (
+        "alert",
+        "High-priority review recommended",
+    )
 elif (units_change_pct is not None and units_change_pct <= -5) and (
     bill_change_pct is None or bill_change_pct <= -5
 ):
-    trend_status, trend_text = "good", "Your overall trend is improving"
+    trend_status, trend_text = (
+        "good",
+        "Your overall trend is improving",
+    )
 else:
-    trend_status, trend_text = "warning", "Monitor next month's numbers"
+    trend_status, trend_text = (
+        "warning",
+        "Monitor next month's numbers",
+    )
 
 st.markdown(
     f"""
@@ -837,13 +975,22 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-if bill_change_pct is not None and bill_change_pct >= 10 and units_change_pct is not None and units_change_pct <= 0:
+if (
+    bill_change_pct is not None
+    and bill_change_pct >= 10
+    and units_change_pct is not None
+    and units_change_pct <= 0
+):
     st.markdown(
         f'<div class="warning-card">⚠️ <b>Bill Alert:</b> your bill increased by <b>{bill_change_pct:.1f}%</b> while your units did not increase. This can happen because of tariff slabs, taxes, fixed charges or other bill components, so review the bill details before blaming appliance usage.</div>',
         unsafe_allow_html=True,
     )
-elif (bill_change_pct is not None and bill_change_pct >= 10) or (
-    units_change_pct is not None and units_change_pct >= 10
+elif (
+    bill_change_pct is not None
+    and bill_change_pct >= 10
+) or (
+    units_change_pct is not None
+    and units_change_pct >= 10
 ):
     reasons = []
     if bill_change_pct is not None and bill_change_pct >= 10:
@@ -854,8 +1001,12 @@ elif (bill_change_pct is not None and bill_change_pct >= 10) or (
         f'<div class="warning-card">🚨 <b>Energy Alert:</b> {" and ".join(reasons)} compared with the previous month. Check the appliance audit below for the likely high-consumption drivers.</div>',
         unsafe_allow_html=True,
     )
-elif (bill_change_pct is not None and bill_change_pct <= -5) and (
-    units_change_pct is None or units_change_pct <= -5
+elif (
+    bill_change_pct is not None
+    and bill_change_pct <= -5
+) and (
+    units_change_pct is None
+    or units_change_pct <= -5
 ):
     st.markdown(
         f'<div class="success-card">✅ <b>Good news:</b> your bill has reduced by <b>{abs(bill_change_pct):.1f}%</b> compared with the previous bill, and your energy trend is also improving.</div>',
@@ -872,21 +1023,34 @@ with left:
         display_df = df.copy()
         display_df["Monthly kWh"] = display_df["Monthly kWh"].round(1)
         display_df["Estimated Cost"] = display_df["Estimated Cost"].round(0)
-        st.dataframe(display_df, use_container_width=True, hide_index=True)
+        st.dataframe(
+            display_df,
+            use_container_width=True,
+            hide_index=True,
+        )
 
         chart_df = df[["Appliance", "Monthly kWh"]].copy()
-        chart_df = chart_df.sort_values("Monthly kWh", ascending=True)
+        chart_df = chart_df.sort_values(
+            "Monthly kWh",
+            ascending=True,
+        )
         st.bar_chart(chart_df.set_index("Appliance"))
 
 with right:
     st.markdown("### 🎯 Highest Energy Consumers")
     if not df.empty:
-        top = df.sort_values("Monthly kWh", ascending=False).head(5)
+        top = df.sort_values(
+            "Monthly kWh",
+            ascending=False,
+        ).head(5)
+
         for _, row in top.iterrows():
             share = (
                 (row["Monthly kWh"] / total_appliance_kwh * 100)
-                if total_appliance_kwh else 0
+                if total_appliance_kwh
+                else 0
             )
+
             st.markdown(
                 f"""
                 <div class="card">
@@ -905,7 +1069,11 @@ st.markdown("---")
 # -----------------------------
 # Carbon footprint
 # -----------------------------
-st.markdown('<div class="section-title">🌱 Carbon Footprint Estimate</div>', unsafe_allow_html=True)
+st.markdown(
+    '<div class="section-title">🌱 Carbon Footprint Estimate</div>',
+    unsafe_allow_html=True,
+)
+
 st.markdown(
     f"""
     <div class="carbon-card">
@@ -925,7 +1093,11 @@ st.markdown(
 # AI specialist analysis
 # -----------------------------
 st.markdown("---")
-st.markdown('<div class="section-title">🤖 Personalized AI Energy Audit</div>', unsafe_allow_html=True)
+
+st.markdown(
+    '<div class="section-title">🤖 Personalized AI Energy Audit</div>',
+    unsafe_allow_html=True,
+)
 
 user_data = {
     "city": city,
@@ -950,6 +1122,7 @@ ai_names = [
     "💡 Saving Strategy",
     "🔔 Monitoring & Alerts",
 ]
+
 ai_roles = [
     "Understanding Agent",
     "Energy Analysis Agent",
@@ -965,6 +1138,7 @@ selected_name = st.radio(
     label_visibility="collapsed",
     key="ai_section_radio",
 )
+
 st.session_state["active_ai_section"] = ai_names.index(selected_name)
 active_idx = st.session_state["active_ai_section"]
 active_name = ai_names[active_idx].split(" ", 1)[-1]
@@ -981,12 +1155,20 @@ if st.button(
     use_container_width=True,
 ):
     with st.spinner(f"{active_role} is analyzing your data..."):
-        result = run_ai_analysis(user_data, active_role)
+        result = run_ai_analysis(
+            user_data,
+            active_role,
+        )
+
     st.session_state[f"ai_result_{active_idx}"] = result
 
-saved_result = st.session_state.get(f"ai_result_{active_idx}")
+saved_result = st.session_state.get(
+    f"ai_result_{active_idx}"
+)
+
 if saved_result:
     st.markdown(saved_result)
+
     st.download_button(
         "⬇️ Download This Report",
         data=saved_result,
@@ -1001,7 +1183,9 @@ if saved_result:
 # -----------------------------
 with st.popover("🤖 Ask Energy AI"):
     st.markdown("### 💬 Energy Assistant")
-    st.caption("Ask anything about your household energy data or optimization strategies.")
+    st.caption(
+        "Ask anything about your household energy data or optimization strategies."
+    )
 
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = []
@@ -1017,16 +1201,43 @@ with st.popover("🤖 Ask Energy AI"):
         height=90,
     )
 
-    if st.button("Send to Energy AI", key="floating_send", use_container_width=True):
+    if st.button(
+        "Send to Energy AI",
+        key="floating_send",
+        use_container_width=True,
+    ):
         cleaned_q = question.strip().lower()
+
         if question.strip():
             st.session_state.chat_history.append(
-                {"role": "user", "content": question.strip()}
+                {
+                    "role": "user",
+                    "content": question.strip(),
+                }
             )
-            
-            greetings = ["hi", "hiii", "hiiii", "hello", "hey", "salam", "assalam-o-alaikum", "assalam o alaikum", "good morning", "good evening"]
-            if cleaned_q in greetings or cleaned_q.replace("i", "") in ["h", "hh", "hhh"]:
-                answer = "Hello! I am your Energy Assistant. How can I help you optimize your household energy bill or manage your appliances today?"
+
+            greetings = [
+                "hi",
+                "hiii",
+                "hiiii",
+                "hello",
+                "hey",
+                "salam",
+                "assalam-o-alaikum",
+                "assalam o alaikum",
+                "good morning",
+                "good evening",
+            ]
+
+            if (
+                cleaned_q in greetings
+                or cleaned_q.replace("i", "") in ["h", "hh", "hhh"]
+            ):
+                answer = (
+                    "Hello! I am your Energy Assistant. "
+                    "How can I help you optimize your household energy "
+                    "bill or manage your appliances today?"
+                )
             else:
                 with st.spinner("Energy AI is analyzing your data..."):
                     answer = run_ai_analysis(
@@ -1034,11 +1245,16 @@ with st.popover("🤖 Ask Energy AI"):
                         "General Energy Assistant",
                         question.strip(),
                     )
-            
+
             st.session_state.chat_history.append(
-                {"role": "assistant", "content": answer}
+                {
+                    "role": "assistant",
+                    "content": answer,
+                }
             )
+
             st.rerun()
+
         else:
             st.warning("Please enter a question first.")
 
@@ -1046,4 +1262,8 @@ with st.popover("🤖 Ask Energy AI"):
 # Footer
 # -----------------------------
 st.markdown("---")
-st.markdown('<div style="color:#475569;font-size:.85rem;text-align:center;padding:1rem 0;">Bijli Bachat AI • Environment & Sustainability — Tech for Good • Hackathon MVP • Calculations are estimates based on user-provided data.</div>', unsafe_allow_html=True)
+
+st.markdown(
+    '<div style="color:#475569;font-size:.85rem;text-align:center;padding:1rem 0;">Bijli Bachat AI • Environment & Sustainability — Tech for Good • Hackathon MVP • Calculations are estimates based on user-provided data.</div>',
+    unsafe_allow_html=True,
+)
