@@ -1,4 +1,3 @@
-
 import json
 import math
 from datetime import datetime
@@ -568,6 +567,7 @@ with st.sidebar:
         help="Upload a clear bill image or PDF and the app will try to read the bill amount and units automatically.",
     )
     if st.button(
+        "Read Latest Bill",
         key="read_latest_bill",
         use_container_width=True,
         disabled=latest_bill_file is None,
@@ -604,6 +604,7 @@ with st.sidebar:
         help="Upload a clear bill image or PDF and the app will try to read the bill amount and units automatically.",
     )
     if st.button(
+        "Read Previous Bill",
         key="read_previous_bill",
         use_container_width=True,
         disabled=previous_bill_file is None,
