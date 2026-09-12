@@ -23,283 +23,16 @@ st.set_page_config(
 # -----------------------------
 st.markdown("""
 <style>
-
-    /* ========================================================
-       MAIN APP
-       ======================================================== */
-
     .stApp {
         background: linear-gradient(135deg, #f8fafc 0%, #f0fdf4 100%);
     }
 
-
-    /* ========================================================
-       SIDEBAR — THEME AWARE
-       
-       IMPORTANT:
-       Do NOT force all sidebar elements to white.
-       Streamlit's --text-color automatically changes according
-       to Light / Dark mode.
-       ======================================================== */
-
     [data-testid="stSidebar"] {
-        background: var(--secondary-background-color) !important;
+        background: #0f172a;
     }
-
-    /* Sidebar headings, labels and normal text */
-    [data-testid="stSidebar"] h1,
-    [data-testid="stSidebar"] h2,
-    [data-testid="stSidebar"] h3,
-    [data-testid="stSidebar"] h4,
-    [data-testid="stSidebar"] p,
-    [data-testid="stSidebar"] span,
-    [data-testid="stSidebar"] label,
-    [data-testid="stSidebar"] div,
-    [data-testid="stSidebar"] small {
-        color: var(--text-color) !important;
+    [data-testid="stSidebar"] * {
+        color: #f8fafc !important;
     }
-
-
-    /* ========================================================
-       SIDEBAR TEXT INPUTS
-       ======================================================== */
-
-    [data-testid="stSidebar"] input {
-        color: var(--text-color) !important;
-        background-color: var(--background-color) !important;
-        caret-color: var(--text-color) !important;
-    }
-
-    [data-testid="stSidebar"] input::placeholder {
-        color: var(--text-color) !important;
-        opacity: .65 !important;
-    }
-
-
-    /* ========================================================
-       SIDEBAR NUMBER INPUTS
-       Makes manually entered numbers visible.
-       ======================================================== */
-
-    [data-testid="stSidebar"] [data-testid="stNumberInput"] input {
-        color: var(--text-color) !important;
-        background-color: var(--background-color) !important;
-        -webkit-text-fill-color: var(--text-color) !important;
-        opacity: 1 !important;
-    }
-
-    /* Number input container */
-    [data-testid="stSidebar"] [data-testid="stNumberInput"] > div {
-        color: var(--text-color) !important;
-    }
-
-    /* Number input +/- buttons */
-    [data-testid="stSidebar"] [data-testid="stNumberInput"] button {
-        color: var(--text-color) !important;
-        background-color: var(--background-color) !important;
-        border-color: var(--border-color) !important;
-    }
-
-    [data-testid="stSidebar"] [data-testid="stNumberInput"] button svg {
-        color: var(--text-color) !important;
-        fill: var(--text-color) !important;
-        stroke: var(--text-color) !important;
-    }
-
-    [data-testid="stSidebar"] [data-testid="stNumberInput"] button:hover {
-        color: var(--text-color) !important;
-        background-color: var(--secondary-background-color) !important;
-    }
-
-
-    /* ========================================================
-       SIDEBAR SELECTBOX
-       ======================================================== */
-
-    [data-testid="stSidebar"] [data-baseweb="select"] {
-        background-color: var(--background-color) !important;
-        color: var(--text-color) !important;
-    }
-
-    [data-testid="stSidebar"] [data-baseweb="select"] > div {
-        background-color: var(--background-color) !important;
-        color: var(--text-color) !important;
-        border-color: var(--border-color) !important;
-    }
-
-    [data-testid="stSidebar"] [data-baseweb="select"] input {
-        color: var(--text-color) !important;
-        -webkit-text-fill-color: var(--text-color) !important;
-    }
-
-    [data-testid="stSidebar"] [data-baseweb="select"] span {
-        color: var(--text-color) !important;
-    }
-
-    [data-testid="stSidebar"] [data-baseweb="select"] svg {
-        fill: var(--text-color) !important;
-        color: var(--text-color) !important;
-    }
-
-
-    /* ========================================================
-       SELECTBOX DROPDOWN / OPTIONS
-       
-       Streamlit BaseWeb can render the dropdown outside the
-       sidebar, therefore these selectors are global.
-       ======================================================== */
-
-    [data-baseweb="popover"] {
-        background-color: var(--background-color) !important;
-        color: var(--text-color) !important;
-    }
-
-    [data-baseweb="popover"] > div {
-        background-color: var(--background-color) !important;
-        color: var(--text-color) !important;
-    }
-
-    [role="listbox"] {
-        background-color: var(--background-color) !important;
-        color: var(--text-color) !important;
-    }
-
-    [role="option"] {
-        background-color: var(--background-color) !important;
-        color: var(--text-color) !important;
-    }
-
-    [role="option"] * {
-        color: var(--text-color) !important;
-    }
-
-    [role="option"]:hover {
-        background-color: var(--secondary-background-color) !important;
-        color: var(--text-color) !important;
-    }
-
-    [role="option"][aria-selected="true"] {
-        background-color: var(--secondary-background-color) !important;
-        color: var(--text-color) !important;
-    }
-
-
-    /* ========================================================
-       SIDEBAR FILE UPLOADER
-       ======================================================== */
-
-    [data-testid="stSidebar"] [data-testid="stFileUploader"] {
-        color: var(--text-color) !important;
-    }
-
-    [data-testid="stSidebar"] [data-testid="stFileUploader"] section {
-        background-color: var(--background-color) !important;
-        border-color: var(--border-color) !important;
-    }
-
-    [data-testid="stSidebar"] [data-testid="stFileUploader"] section > div {
-        color: var(--text-color) !important;
-    }
-
-    [data-testid="stSidebar"] [data-testid="stFileUploader"] small {
-        color: var(--text-color) !important;
-        opacity: .75 !important;
-    }
-
-    /* Upload / Browse button */
-    [data-testid="stSidebar"] [data-testid="stFileUploader"] button {
-        background: #0f172a !important;
-        color: #ffffff !important;
-        border: 1px solid #0f172a !important;
-        border-radius: 10px !important;
-        font-weight: 700 !important;
-    }
-
-    [data-testid="stSidebar"] [data-testid="stFileUploader"] button p,
-    [data-testid="stSidebar"] [data-testid="stFileUploader"] button span {
-        color: #ffffff !important;
-        opacity: 1 !important;
-    }
-
-    [data-testid="stSidebar"] [data-testid="stFileUploader"] button:hover {
-        background: #166534 !important;
-        border-color: #166534 !important;
-        color: #ffffff !important;
-    }
-
-
-    /* ========================================================
-       SIDEBAR EXPANDERS
-       ======================================================== */
-
-    [data-testid="stSidebar"] [data-testid="stExpander"] {
-        background-color: var(--secondary-background-color) !important;
-        border-color: var(--border-color) !important;
-    }
-
-    [data-testid="stSidebar"] [data-testid="stExpander"] summary {
-        color: var(--text-color) !important;
-        background-color: var(--secondary-background-color) !important;
-    }
-
-    [data-testid="stSidebar"] [data-testid="stExpander"] summary span {
-        color: var(--text-color) !important;
-    }
-
-    [data-testid="stSidebar"] [data-testid="stExpander"] svg {
-        color: var(--text-color) !important;
-        fill: var(--text-color) !important;
-    }
-
-    [data-testid="stSidebar"] [data-testid="stExpander"] > div {
-        background-color: var(--secondary-background-color) !important;
-        color: var(--text-color) !important;
-    }
-
-
-    /* ========================================================
-       SIDEBAR CAPTIONS / HELP TEXT
-       ======================================================== */
-
-    [data-testid="stSidebar"] .stCaption,
-    [data-testid="stSidebar"] [data-testid="stCaptionContainer"] {
-        color: var(--text-color) !important;
-        opacity: .75 !important;
-    }
-
-
-    /* ========================================================
-       SIDEBAR PRIMARY ANALYZE BUTTON
-       ======================================================== */
-
-    [data-testid="stSidebar"] div.stButton > button {
-        background: #0f172a !important;
-        color: #ffffff !important;
-        border: 1px solid #0f172a !important;
-        border-radius: 12px !important;
-        font-weight: 700 !important;
-        min-height: 2.8rem;
-    }
-
-    [data-testid="stSidebar"] div.stButton > button p,
-    [data-testid="stSidebar"] div.stButton > button span {
-        color: #ffffff !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-    }
-
-    [data-testid="stSidebar"] div.stButton > button:hover,
-    [data-testid="stSidebar"] div.stButton > button:focus,
-    [data-testid="stSidebar"] div.stButton > button:active {
-        background: #166534 !important;
-        border-color: #166534 !important;
-        color: #ffffff !important;
-    }
-
-
-    /* ========================================================
-       HERO
-       ======================================================== */
 
     .hero {
         padding: 2rem 2.2rem;
@@ -309,23 +42,8 @@ st.markdown("""
         margin-bottom: 1.2rem;
         box-shadow: 0 12px 35px rgba(15, 23, 42, .18);
     }
-
-    .hero h1 {
-        margin: 0;
-        font-size: 2.5rem;
-        color: #ffffff !important;
-    }
-
-    .hero p {
-        margin: .55rem 0 0;
-        color: #dbeafe !important;
-        font-size: 1.05rem;
-    }
-
-
-    /* ========================================================
-       GENERAL CARDS
-       ======================================================== */
+    .hero h1 { margin: 0; font-size: 2.5rem; color: #ffffff !important; }
+    .hero p { margin: .55rem 0 0; color: #dbeafe !important; font-size: 1.05rem; }
 
     .card {
         background: #ffffff;
@@ -337,21 +55,8 @@ st.markdown("""
         color: #0f172a !important;
     }
 
-    .metric-title {
-        color: #475569 !important;
-        font-size: .86rem;
-    }
-
-    .metric-value {
-        color: #0f172a !important;
-        font-size: 1.55rem;
-        font-weight: 750;
-    }
-
-
-    /* ========================================================
-       BADGE
-       ======================================================== */
+    .metric-title { color: #475569 !important; font-size: .86rem; }
+    .metric-value { color: #0f172a !important; font-size: 1.55rem; font-weight: 750; }
 
     .badge {
         display: inline-block;
@@ -362,12 +67,6 @@ st.markdown("""
         background: #dcfce7;
         color: #166534 !important;
     }
-
-
-    /* ========================================================
-       CARBON FOOTPRINT
-       KEPT EXACTLY AS BEFORE
-       ======================================================== */
 
     .carbon-card {
         background: linear-gradient(135deg, #0f172a 0%, #164e63 55%, #166534 100%);
@@ -399,11 +98,6 @@ st.markdown("""
         line-height: 1.45;
     }
 
-
-    /* ========================================================
-       SECTION TITLES
-       ======================================================== */
-
     .section-title {
         color: #0f172a !important;
         font-size: 1.35rem;
@@ -411,15 +105,7 @@ st.markdown("""
         margin-top: .6rem;
     }
 
-    .small-muted {
-        color: #475569 !important;
-        font-size: .88rem;
-    }
-
-
-    /* ========================================================
-       ALERT CARDS
-       ======================================================== */
+    .small-muted { color: #475569 !important; font-size: .88rem; }
 
     .warning-card {
         border-left: 5px solid #f59e0b;
@@ -437,11 +123,7 @@ st.markdown("""
         color: #14532d !important;
     }
 
-
-    /* ========================================================
-       AI NAVIGATION
-       ======================================================== */
-
+    /* Professional AI section navigation */
     .ai-nav-label {
         color: #0f172a !important;
         font-size: .82rem;
@@ -449,6 +131,7 @@ st.markdown("""
         margin-bottom: .35rem;
     }
 
+    /* Compact, text-style AI navigation — no large boxes */
     [data-testid="stRadio"] {
         margin-top: .1rem;
         margin-bottom: .35rem;
@@ -497,6 +180,7 @@ st.markdown("""
         opacity: 1 !important;
     }
 
+    /* Hide the radio control itself while retaining accessible clickable labels */
     [data-testid="stRadio"] div[role="radiogroup"] > label > div:first-child {
         display: none !important;
     }
@@ -507,11 +191,7 @@ st.markdown("""
         margin: -.1rem 0 .7rem 0;
     }
 
-
-    /* ========================================================
-       ENERGY STATUS CARDS
-       ======================================================== */
-
+    /* Energy status cards */
     .snapshot-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -565,39 +245,22 @@ st.markdown("""
         font-weight: 750;
     }
 
-    .snapshot-card.good .snapshot-status {
-        color: #166534 !important;
-    }
-
-    .snapshot-card.alert .snapshot-status {
-        color: #b91c1c !important;
-    }
-
-    .snapshot-card.neutral .snapshot-status {
-        color: #475569 !important;
-    }
-
-    .snapshot-card.warning .snapshot-status {
-        color: #92400e !important;
-    }
+    .snapshot-card.good .snapshot-status { color: #166534 !important; }
+    .snapshot-card.alert .snapshot-status { color: #b91c1c !important; }
+    .snapshot-card.neutral .snapshot-status { color: #475569 !important; }
+    .snapshot-card.warning .snapshot-status { color: #92400e !important; }
 
     @media (max-width: 900px) {
-        .snapshot-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
+        .snapshot-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 600px) {
-        .snapshot-grid {
-            grid-template-columns: 1fr;
-        }
+        .snapshot-grid { grid-template-columns: 1fr; }
     }
 
-
-    /* ========================================================
-       GENERAL BUTTONS
-       ======================================================== */
-
+    /* ---------------------------------------------------- */
+    /* BUTTON STYLING FIXES (DOWNLOAD & MAIN BUTTONS)       */
+    /* ---------------------------------------------------- */
     div.stButton > button,
     div[data-testid="stDownloadButton"] > button {
         background: #0f172a !important;
@@ -607,7 +270,6 @@ st.markdown("""
         font-weight: 700 !important;
         min-height: 2.8rem;
     }
-
     div.stButton > button p,
     div.stButton > button span,
     div[data-testid="stDownloadButton"] > button p,
@@ -616,7 +278,7 @@ st.markdown("""
         opacity: 1 !important;
         visibility: visible !important;
     }
-
+    
     div.stButton > button:hover,
     div.stButton > button:focus,
     div.stButton > button:active,
@@ -629,11 +291,9 @@ st.markdown("""
         color: #ffffff !important;
     }
 
-
-    /* ========================================================
-       FLOATING AI ASSISTANT
-       ======================================================== */
-
+    /* ---------------------------------------------------- */
+    /* FLOATING AI ASSISTANT POPOVER BUTTON FIXES           */
+    /* ---------------------------------------------------- */
     [data-testid="stPopover"] > button {
         position: fixed !important;
         right: 24px !important;
@@ -650,14 +310,13 @@ st.markdown("""
         visibility: visible !important;
         transition: all 0.2s ease-in-out !important;
     }
-
     [data-testid="stPopover"] > button p,
     [data-testid="stPopover"] > button span {
         color: #ffffff !important;
         opacity: 1 !important;
         visibility: visible !important;
     }
-
+    
     [data-testid="stPopover"] > button:hover,
     [data-testid="stPopover"] > button:focus,
     [data-testid="stPopover"] > button:active,
@@ -669,7 +328,7 @@ st.markdown("""
         visibility: visible !important;
         transform: translateY(-2px);
     }
-
+    
     [data-testid="stPopover"] > button:hover p,
     [data-testid="stPopover"] > button:hover span,
     [data-testid="stPopover"] > button:focus p,
@@ -683,11 +342,9 @@ st.markdown("""
         visibility: visible !important;
     }
 
-
-    /* ========================================================
-       POPOVER CHAT WINDOW
-       ======================================================== */
-
+    /* ---------------------------------------------------- */
+    /* POPOVER CHAT WINDOW & TEXT AREA CONTRAST FIXES       */
+    /* ---------------------------------------------------- */
     [data-testid="stPopoverBody"] {
         background-color: #ffffff !important;
         color: #0f172a !important;
@@ -710,13 +367,14 @@ st.markdown("""
         padding: 0.5rem !important;
     }
 
-    [data-testid="stPopoverBody"] [data-testid="stChatMessage"] p,
-    [data-testid="stPopoverBody"] [data-testid="stChatMessage"] span,
+    [data-testid="stPopoverBody"] [data-testid="stChatMessage"] p, 
+    [data-testid="stPopoverBody"] [data-testid="stChatMessage"] span, 
     [data-testid="stPopoverBody"] [data-testid="stChatMessage"] div {
         color: #0f172a !important;
         opacity: 1 !important;
     }
 
+    /* Fix text area background and typed text color inside popover */
     [data-testid="stPopoverBody"] textarea {
         background-color: #ffffff !important;
         color: #0f172a !important;
@@ -729,19 +387,11 @@ st.markdown("""
         opacity: 1 !important;
     }
 
-
-    /* ========================================================
-       GENERAL READABLE TEXT
-       ======================================================== */
-
-    .stMarkdown,
-    .stText,
-    label,
-    [data-testid="stMetricLabel"],
+    /* General readable text */
+    .stMarkdown, .stText, label, [data-testid="stMetricLabel"],
     [data-testid="stMetricValue"] {
         color: #0f172a;
     }
-
 </style>
 """, unsafe_allow_html=True)
 
@@ -807,13 +457,11 @@ def build_ai_client():
 def extract_bill_data(uploaded_file, bill_type):
     """Read a supported electricity-bill image/PDF with Gemini and return structured fields."""
     client = build_ai_client()
-
     if client is None:
         return None, "AI is not connected. Add GEMINI_API_KEY in Streamlit Secrets."
 
     try:
         uploaded_file.seek(0)
-
         bill_part = genai.types.Part.from_bytes(
             data=uploaded_file.getvalue(),
             mime_type=uploaded_file.type or "application/octet-stream",
@@ -834,40 +482,34 @@ Return ONLY valid JSON with exactly these keys:
 
 For bill_amount_pkr, use the final/current payable bill amount or total bill amount
 that best represents the amount the household pays for this bill.
-
 For units_kwh, use the billed electricity consumption/units (kWh) for this bill.
-
 If a value is not clearly available, return null.
 """
-
         response = client.models.generate_content(
             model="gemini-3.6-flash",
             contents=[bill_part, prompt],
         )
 
         text = (response.text or "").strip()
-
         if text.startswith("`"):
             text = text.strip("`").strip()
-
             if text.lower().startswith("json"):
                 text = text[4:].strip()
 
         data = json.loads(text)
-
         return data, None
-
     except Exception as exc:
         return None, f"Could not read the uploaded bill: {exc}"
 
 
 # ============================================================
 # Four AI "agent roles"
+# These are prompt-based specialist modules, NOT autonomous agents.
+# This keeps the project aligned with the course skills.
 # ============================================================
 
 def run_ai_analysis(user_data, role, user_question=None):
     client = build_ai_client()
-
     if client is None:
         return (
             "AI is not connected yet. Add GEMINI_API_KEY in Streamlit Secrets "
@@ -881,14 +523,12 @@ Interpret the user's household, electricity-bill and appliance information.
 Identify the user's main energy problem and summarize it in simple language.
 Do not invent missing data.
 """,
-
         "Energy Analysis Agent": """
 You are the Energy Analysis Specialist for Bijli Bachat AI.
 Analyze appliance-level energy consumption, estimated monthly units,
 estimated costs, unusual consumption patterns, and major energy drivers.
 Prioritize measurable findings. Do not invent meter readings.
 """,
-
         "Saving Strategy Agent": """
 You are the Saving Strategy Specialist for Bijli Bachat AI.
 Create a practical Pakistan-household energy-saving plan.
@@ -896,14 +536,12 @@ Prioritize high-impact, low-cost actions first.
 Give estimated savings only when the supplied data supports an estimate,
 and label estimates clearly.
 """,
-
         "Monitoring & Alerting Agent": """
 You are the Monitoring & Alerting Specialist for Bijli Bachat AI.
 Identify useful thresholds, warning signs and monthly checks.
 Suggest what the household should monitor next month.
 Do not claim to monitor live electricity data; this MVP only uses user-entered data.
 """,
-
         "General Energy Assistant": """
 You are a helpful energy-efficiency advisor.
 Answer any specific energy questions using only the supplied household data.
@@ -914,9 +552,7 @@ Be concise, practical and honest about estimates and uncertainty.
     prompt = f"""
 PROJECT: Bijli Bachat AI — Smart Energy & Bill Optimizer
 COUNTRY CONTEXT: Pakistan
-
-IMPORTANT:
-This is an educational/hackathon energy-estimation application.
+IMPORTANT: This is an educational/hackathon energy-estimation application.
 Never claim to have access to a live smart meter unless the user supplied such data.
 Never fabricate tariff rates, meter readings, appliance ratings or savings.
 
@@ -936,15 +572,12 @@ OUTPUT RULES:
 - If important information is missing, say exactly what is missing.
 - Keep the answer suitable for a general Pakistani household.
 """
-
     try:
         response = client.models.generate_content(
             model="gemini-3.6-flash",
             contents=prompt,
         )
-
         return response.text or "No AI response was returned."
-
     except Exception as exc:
         return f"AI request failed: {exc}"
 
@@ -956,10 +589,7 @@ st.markdown("""
 <div class="hero">
     <div class="badge">AI-POWERED ENERGY EFFICIENCY • HACKATHON MVP</div>
     <h1>⚡ Bijli Bachat AI</h1>
-    <p>
-        Smart Energy & Bill Optimizer — understand your electricity use,
-        find energy-heavy appliances, and build a practical savings plan.
-    </p>
+    <p>Smart Energy & Bill Optimizer — understand your electricity use, find energy-heavy appliances, and build a practical savings plan.</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -967,7 +597,6 @@ st.caption(
     "A decision-support tool: calculations are based on the information you enter, "
     "while AI provides explanations and recommendations."
 )
-
 
 # -----------------------------
 # Sidebar inputs
@@ -981,24 +610,12 @@ for source_key, widget_key in [
     if source_key in st.session_state:
         st.session_state[widget_key] = st.session_state.pop(source_key)
 
-
 with st.sidebar:
-
     st.markdown("## 🏠 Household Profile")
-
     household_size = st.number_input(
-        "People in household",
-        min_value=1,
-        max_value=30,
-        value=4,
-        step=1,
+        "People in household", min_value=1, max_value=30, value=4, step=1
     )
-
-    city = st.text_input(
-        "City",
-        value="Multan",
-    )
-
+    city = st.text_input("City", value="Multan")
     monthly_bill = st.number_input(
         "Latest monthly electricity bill (PKR)",
         min_value=0.0,
@@ -1006,7 +623,6 @@ with st.sidebar:
         step=500.0,
         key="monthly_bill_input",
     )
-
     latest_bill_file = st.file_uploader(
         "Upload latest electricity bill (optional)",
         type=["png", "jpg", "jpeg", "webp"],
@@ -1022,7 +638,6 @@ with st.sidebar:
         key="previous_bill_input",
         help="Enter the previous bill amount to enable bill-over-bill alerts.",
     )
-
     previous_bill_file = st.file_uploader(
         "Upload previous month's electricity bill (optional)",
         type=["png", "jpg", "jpeg", "webp"],
@@ -1038,7 +653,6 @@ with st.sidebar:
         key="monthly_units_input",
         help="Enter the units/kWh shown on your electricity bill. This is more useful than bill amount alone.",
     )
-
     previous_units = st.number_input(
         "Previous month's units (optional)",
         min_value=0.0,
@@ -1046,7 +660,6 @@ with st.sidebar:
         step=10.0,
         key="previous_units_input",
     )
-
     tariff = st.number_input(
         "Approx. cost per unit (PKR)",
         min_value=0.0,
@@ -1056,12 +669,8 @@ with st.sidebar:
     )
 
     st.markdown("---")
-
     st.markdown("### Appliance Setup")
-
-    st.caption(
-        "Add the appliances you want the app to analyze."
-    )
+    st.caption("Add the appliances you want the app to analyze.")
 
     appliance_count = st.number_input(
         "Number of appliances",
@@ -1072,22 +681,14 @@ with st.sidebar:
     )
 
     appliances = []
-
     for i in range(int(appliance_count)):
-
-        with st.expander(
-            f"Appliance {i+1}",
-            expanded=(i < 2),
-        ):
-
+        with st.expander(f"Appliance {i+1}", expanded=(i < 2)):
             appliance_type = st.selectbox(
                 "Appliance",
                 list(APPLIANCE_PRESETS.keys()),
                 key=f"type_{i}",
             )
-
             default_watts = APPLIANCE_PRESETS[appliance_type]
-
             watts = st.number_input(
                 "Power (watts)",
                 min_value=1.0,
@@ -1095,7 +696,6 @@ with st.sidebar:
                 step=10.0,
                 key=f"watts_{i}",
             )
-
             hours = st.number_input(
                 "Hours used per day",
                 min_value=0.0,
@@ -1104,7 +704,6 @@ with st.sidebar:
                 step=0.5,
                 key=f"hours_{i}",
             )
-
             quantity = st.number_input(
                 "Quantity",
                 min_value=1,
@@ -1113,7 +712,6 @@ with st.sidebar:
                 step=1,
                 key=f"qty_{i}",
             )
-
             appliances.append(
                 {
                     "name": appliance_type,
@@ -1129,22 +727,15 @@ with st.sidebar:
         use_container_width=True,
     )
 
-
 # -----------------------------
 # Calculations
 # -----------------------------
 rows = []
-
 for a in appliances:
-
     kwh = calculate_appliance_energy(
-        a["watts"],
-        a["hours_per_day"],
-        a["quantity"],
+        a["watts"], a["hours_per_day"], a["quantity"]
     )
-
     cost = kwh * tariff
-
     rows.append(
         {
             "Appliance": a["name"],
@@ -1156,51 +747,28 @@ for a in appliances:
         }
     )
 
-
 df = pd.DataFrame(rows)
-
-total_appliance_kwh = (
-    float(df["Monthly kWh"].sum())
-    if not df.empty
-    else 0.0
-)
-
+total_appliance_kwh = float(df["Monthly kWh"].sum()) if not df.empty else 0.0
 estimated_appliance_cost = total_appliance_kwh * tariff
 
-
 if monthly_units > 0:
-    appliance_share = min(
-        (total_appliance_kwh / monthly_units) * 100,
-        999,
-    )
+    appliance_share = min((total_appliance_kwh / monthly_units) * 100, 999)
 else:
     appliance_share = 0.0
 
-
 if previous_units > 0 and monthly_units > 0:
-    units_change_pct = (
-        (monthly_units - previous_units)
-        / previous_units
-    ) * 100
+    units_change_pct = ((monthly_units - previous_units) / previous_units) * 100
 else:
     units_change_pct = None
 
-
 if previous_bill > 0 and monthly_bill > 0:
-    bill_change_pct = (
-        (monthly_bill - previous_bill)
-        / previous_bill
-    ) * 100
+    bill_change_pct = ((monthly_bill - previous_bill) / previous_bill) * 100
 else:
     bill_change_pct = None
 
-
 change_pct = units_change_pct
-
 GRID_CO2_FACTOR = 0.40
-
 estimated_co2 = monthly_units * GRID_CO2_FACTOR
-
 
 # -----------------------------
 # Main dashboard
@@ -1208,15 +776,9 @@ estimated_co2 = monthly_units * GRID_CO2_FACTOR
 if analyze or "analyzed" not in st.session_state:
     st.session_state["analyzed"] = True
 
-
-st.markdown(
-    '<div class="section-title">📊 Your Energy Snapshot</div>',
-    unsafe_allow_html=True,
-)
-
+st.markdown('<div class="section-title">📊 Your Energy Snapshot</div>', unsafe_allow_html=True)
 
 def status_card(title, value, status, status_text):
-
     return f"""
     <div class="snapshot-card {status}">
         <div class="snapshot-title">{title}</div>
@@ -1225,295 +787,112 @@ def status_card(title, value, status, status_text):
     </div>
     """
 
-
 if units_change_pct is None:
-
-    units_status = "neutral"
-    units_text = "No previous units entered"
-
+    units_status, units_text = "neutral", "No previous units entered"
 elif units_change_pct <= -5:
-
-    units_status = "good"
-    units_text = f"↓ {abs(units_change_pct):.1f}% vs previous month"
-
+    units_status, units_text = "good", f"↓ {abs(units_change_pct):.1f}% vs previous month"
 elif units_change_pct >= 10:
-
-    units_status = "alert"
-    units_text = f"↑ {units_change_pct:.1f}% — energy alert"
-
+    units_status, units_text = "alert", f"↑ {units_change_pct:.1f}% — energy alert"
 else:
-
-    units_status = "warning"
-    units_text = f"↑ {units_change_pct:.1f}% — monitor usage"
-
+    units_status, units_text = "warning", f"↑ {units_change_pct:.1f}% — monitor usage"
 
 if bill_change_pct is None:
-
-    bill_status = "neutral"
-    bill_text = "No previous bill entered"
-
+    bill_status, bill_text = "neutral", "No previous bill entered"
 elif bill_change_pct <= -5:
-
-    bill_status = "good"
-    bill_text = f"↓ {abs(bill_change_pct):.1f}% vs previous bill"
-
+    bill_status, bill_text = "good", f"↓ {abs(bill_change_pct):.1f}% vs previous bill"
 elif bill_change_pct >= 10:
-
-    bill_status = "alert"
-    bill_text = f"↑ {bill_change_pct:.1f}% — bill alert"
-
+    bill_status, bill_text = "alert", f"↑ {bill_change_pct:.1f}% — bill alert"
 else:
-
-    bill_status = "warning"
-    bill_text = f"↑ {bill_change_pct:.1f}% — monitor bill"
-
+    bill_status, bill_text = "warning", f"↑ {bill_change_pct:.1f}% — monitor bill"
 
 if total_appliance_kwh <= monthly_units * 0.75:
-
-    appliance_status = "good"
-    appliance_text = "Appliance estimate is within bill units"
-
+    appliance_status, appliance_text = "good", "Appliance estimate is within bill units"
 elif monthly_units > 0 and total_appliance_kwh > monthly_units * 1.05:
-
-    appliance_status = "alert"
-    appliance_text = "Entered appliance use exceeds bill units"
-
+    appliance_status, appliance_text = "alert", "Entered appliance use exceeds bill units"
 else:
-
-    appliance_status = "warning"
-    appliance_text = "Review appliance usage estimate"
-
+    appliance_status, appliance_text = "warning", "Review appliance usage estimate"
 
 if units_change_pct is None and bill_change_pct is None:
-
-    trend_status = "neutral"
-    trend_text = "Add previous bill + units for alerts"
-
-elif (
-    units_change_pct is not None
-    and units_change_pct >= 10
-) or (
-    bill_change_pct is not None
-    and bill_change_pct >= 10
+    trend_status, trend_text = "neutral", "Add previous bill + units for alerts"
+elif (units_change_pct is not None and units_change_pct >= 10) or (
+    bill_change_pct is not None and bill_change_pct >= 10
 ):
-
-    trend_status = "alert"
-    trend_text = "High-priority review recommended"
-
-elif (
-    units_change_pct is not None
-    and units_change_pct <= -5
-) and (
-    bill_change_pct is None
-    or bill_change_pct <= -5
+    trend_status, trend_text = "alert", "High-priority review recommended"
+elif (units_change_pct is not None and units_change_pct <= -5) and (
+    bill_change_pct is None or bill_change_pct <= -5
 ):
-
-    trend_status = "good"
-    trend_text = "Your overall trend is improving"
-
+    trend_status, trend_text = "good", "Your overall trend is improving"
 else:
-
-    trend_status = "warning"
-    trend_text = "Monitor next month's numbers"
-
+    trend_status, trend_text = "warning", "Monitor next month's numbers"
 
 st.markdown(
     f"""
     <div class="snapshot-grid">
-
-        {status_card(
-            "Monthly Units",
-            f"{monthly_units:,.0f} kWh",
-            units_status,
-            units_text
-        )}
-
-        {status_card(
-            "Latest Bill",
-            money(monthly_bill),
-            bill_status,
-            bill_text
-        )}
-
-        {status_card(
-            "Appliance Estimate",
-            f"{total_appliance_kwh:,.0f} kWh",
-            appliance_status,
-            appliance_text
-        )}
-
-        {status_card(
-            "Energy Trend",
-            f"{units_change_pct:+.1f}%"
-            if units_change_pct is not None
-            else "N/A",
-            trend_status,
-            trend_text
-        )}
-
+        {status_card("Monthly Units", f"{monthly_units:,.0f} kWh", units_status, units_text)}
+        {status_card("Latest Bill", money(monthly_bill), bill_status, bill_text)}
+        {status_card("Appliance Estimate", f"{total_appliance_kwh:,.0f} kWh", appliance_status, appliance_text)}
+        {status_card("Energy Trend", f"{units_change_pct:+.1f}%" if units_change_pct is not None else "N/A", trend_status, trend_text)}
     </div>
     """,
     unsafe_allow_html=True,
 )
 
-
-if (
-    bill_change_pct is not None
-    and bill_change_pct >= 10
-    and units_change_pct is not None
-    and units_change_pct <= 0
-):
-
+if bill_change_pct is not None and bill_change_pct >= 10 and units_change_pct is not None and units_change_pct <= 0:
     st.markdown(
-        f"""
-        <div class="warning-card">
-            ⚠️ <b>Bill Alert:</b>
-            your bill increased by
-            <b>{bill_change_pct:.1f}%</b>
-            while your units did not increase.
-            This can happen because of tariff slabs, taxes,
-            fixed charges or other bill components, so review
-            the bill details before blaming appliance usage.
-        </div>
-        """,
+        f'<div class="warning-card">⚠️ <b>Bill Alert:</b> your bill increased by <b>{bill_change_pct:.1f}%</b> while your units did not increase. This can happen because of tariff slabs, taxes, fixed charges or other bill components, so review the bill details before blaming appliance usage.</div>',
         unsafe_allow_html=True,
     )
-
-
-elif (
-    bill_change_pct is not None
-    and bill_change_pct >= 10
-) or (
-    units_change_pct is not None
-    and units_change_pct >= 10
+elif (bill_change_pct is not None and bill_change_pct >= 10) or (
+    units_change_pct is not None and units_change_pct >= 10
 ):
-
     reasons = []
-
-    if (
-        bill_change_pct is not None
-        and bill_change_pct >= 10
-    ):
-        reasons.append(
-            f"bill is up {bill_change_pct:.1f}%"
-        )
-
-    if (
-        units_change_pct is not None
-        and units_change_pct >= 10
-    ):
-        reasons.append(
-            f"units are up {units_change_pct:.1f}%"
-        )
-
+    if bill_change_pct is not None and bill_change_pct >= 10:
+        reasons.append(f"bill is up {bill_change_pct:.1f}%")
+    if units_change_pct is not None and units_change_pct >= 10:
+        reasons.append(f"units are up {units_change_pct:.1f}%")
     st.markdown(
-        f"""
-        <div class="warning-card">
-            🚨 <b>Energy Alert:</b>
-            {" and ".join(reasons)}
-            compared with the previous month.
-            Check the appliance audit below for the likely
-            high-consumption drivers.
-        </div>
-        """,
+        f'<div class="warning-card">🚨 <b>Energy Alert:</b> {" and ".join(reasons)} compared with the previous month. Check the appliance audit below for the likely high-consumption drivers.</div>',
         unsafe_allow_html=True,
     )
-
-
-elif (
-    bill_change_pct is not None
-    and bill_change_pct <= -5
-) and (
-    units_change_pct is None
-    or units_change_pct <= -5
+elif (bill_change_pct is not None and bill_change_pct <= -5) and (
+    units_change_pct is None or units_change_pct <= -5
 ):
-
     st.markdown(
-        f"""
-        <div class="success-card">
-            ✅ <b>Good news:</b>
-            your bill has reduced by
-            <b>{abs(bill_change_pct):.1f}%</b>
-            compared with the previous bill,
-            and your energy trend is also improving.
-        </div>
-        """,
+        f'<div class="success-card">✅ <b>Good news:</b> your bill has reduced by <b>{abs(bill_change_pct):.1f}%</b> compared with the previous bill, and your energy trend is also improving.</div>',
         unsafe_allow_html=True,
     )
-
 
 st.markdown("---")
 
-
 left, right = st.columns([1.15, 0.85])
 
-
 with left:
-
     st.markdown("### 🔌 Appliance Energy Audit")
-
     if not df.empty:
-
         display_df = df.copy()
+        display_df["Monthly kWh"] = display_df["Monthly kWh"].round(1)
+        display_df["Estimated Cost"] = display_df["Estimated Cost"].round(0)
+        st.dataframe(display_df, use_container_width=True, hide_index=True)
 
-        display_df["Monthly kWh"] = (
-            display_df["Monthly kWh"].round(1)
-        )
-
-        display_df["Estimated Cost"] = (
-            display_df["Estimated Cost"].round(0)
-        )
-
-        st.dataframe(
-            display_df,
-            use_container_width=True,
-            hide_index=True,
-        )
-
-        chart_df = df[
-            ["Appliance", "Monthly kWh"]
-        ].copy()
-
-        chart_df = chart_df.sort_values(
-            "Monthly kWh",
-            ascending=True,
-        )
-
-        st.bar_chart(
-            chart_df.set_index("Appliance")
-        )
-
+        chart_df = df[["Appliance", "Monthly kWh"]].copy()
+        chart_df = chart_df.sort_values("Monthly kWh", ascending=True)
+        st.bar_chart(chart_df.set_index("Appliance"))
 
 with right:
-
     st.markdown("### 🎯 Highest Energy Consumers")
-
     if not df.empty:
-
-        top = df.sort_values(
-            "Monthly kWh",
-            ascending=False
-        ).head(5)
-
+        top = df.sort_values("Monthly kWh", ascending=False).head(5)
         for _, row in top.iterrows():
-
             share = (
-                (
-                    row["Monthly kWh"]
-                    / total_appliance_kwh
-                    * 100
-                )
-                if total_appliance_kwh
-                else 0
+                (row["Monthly kWh"] / total_appliance_kwh * 100)
+                if total_appliance_kwh else 0
             )
-
             st.markdown(
                 f"""
                 <div class="card">
                     <b>{row['Appliance']}</b><br>
                     <span class="small-muted">
-                    {row['Monthly kWh']:.1f} kWh/month •
-                    {money(row['Estimated Cost'])}
+                    {row['Monthly kWh']:.1f} kWh/month • {money(row['Estimated Cost'])}
                     • {share:.1f}% of entered appliance consumption
                     </span>
                 </div>
@@ -1521,52 +900,32 @@ with right:
                 unsafe_allow_html=True,
             )
 
-
 st.markdown("---")
-
 
 # -----------------------------
 # Carbon footprint
 # -----------------------------
-st.markdown(
-    '<div class="section-title">🌱 Carbon Footprint Estimate</div>',
-    unsafe_allow_html=True
-)
-
+st.markdown('<div class="section-title">🌱 Carbon Footprint Estimate</div>', unsafe_allow_html=True)
 st.markdown(
     f"""
     <div class="carbon-card">
-
-        <div class="carbon-label">
-            Estimated Carbon Footprint
-        </div>
-
-        <div class="carbon-value">
-            {estimated_co2:,.1f} kg CO₂e/month
-        </div>
-
+        <div class="carbon-label">Estimated Carbon Footprint</div>
+        <div class="carbon-value">{estimated_co2:,.1f} kg CO₂e/month</div>
         <div class="carbon-note">
             Planning estimate using an illustrative grid factor of
             {GRID_CO2_FACTOR:.2f} kg CO₂e/kWh. This is not an official
             Pakistan grid-emissions factor.
         </div>
-
     </div>
     """,
     unsafe_allow_html=True,
 )
 
-
 # -----------------------------
 # AI specialist analysis
 # -----------------------------
 st.markdown("---")
-
-st.markdown(
-    '<div class="section-title">🤖 Personalized AI Energy Audit</div>',
-    unsafe_allow_html=True
-)
-
+st.markdown('<div class="section-title">🤖 Personalized AI Energy Audit</div>', unsafe_allow_html=True)
 
 user_data = {
     "city": city,
@@ -1582,10 +941,8 @@ user_data = {
     "appliances": rows,
 }
 
-
 if "active_ai_section" not in st.session_state:
     st.session_state["active_ai_section"] = 0
-
 
 ai_names = [
     "🧠 Understanding",
@@ -1593,15 +950,12 @@ ai_names = [
     "💡 Saving Strategy",
     "🔔 Monitoring & Alerts",
 ]
-
-
 ai_roles = [
     "Understanding Agent",
     "Energy Analysis Agent",
     "Saving Strategy Agent",
     "Monitoring & Alerting Agent",
 ]
-
 
 selected_name = st.radio(
     "AI audit modules",
@@ -1611,193 +965,85 @@ selected_name = st.radio(
     label_visibility="collapsed",
     key="ai_section_radio",
 )
-
-
-st.session_state["active_ai_section"] = (
-    ai_names.index(selected_name)
-)
-
+st.session_state["active_ai_section"] = ai_names.index(selected_name)
 active_idx = st.session_state["active_ai_section"]
-
-active_name = active_name = ai_names[
-    active_idx
-].split(" ", 1)[-1]
-
+active_name = ai_names[active_idx].split(" ", 1)[-1]
 active_role = ai_roles[active_idx]
 
-
 st.markdown(
-    f"""
-    <div class="ai-section-caption">
-        {active_name} · AI specialist analysis based on your household data
-    </div>
-    """,
+    f'<div class="ai-section-caption">{active_name} · AI specialist analysis based on your household data</div>',
     unsafe_allow_html=True,
 )
-
 
 if st.button(
     f"Generate {active_name} Analysis",
     key=f"generate_active_ai_{active_idx}",
     use_container_width=True,
 ):
+    with st.spinner(f"{active_role} is analyzing your data..."):
+        result = run_ai_analysis(user_data, active_role)
+    st.session_state[f"ai_result_{active_idx}"] = result
 
-    with st.spinner(
-        f"{active_role} is analyzing your data..."
-    ):
-
-        result = run_ai_analysis(
-            user_data,
-            active_role
-        )
-
-    st.session_state[
-        f"ai_result_{active_idx}"
-    ] = result
-
-
-saved_result = st.session_state.get(
-    f"ai_result_{active_idx}"
-)
-
-
+saved_result = st.session_state.get(f"ai_result_{active_idx}")
 if saved_result:
-
     st.markdown(saved_result)
-
     st.download_button(
         "⬇️ Download This Report",
         data=saved_result,
-        file_name=(
-            f"bijli_bachat_"
-            f"{ai_roles[active_idx].lower().replace(' ', '_').replace('&', 'and')}"
-            f".txt"
-        ),
+        file_name=f"bijli_bachat_{ai_roles[active_idx].lower().replace(' ', '_').replace('&', 'and')}.txt",
         mime="text/plain",
         key=f"download_ai_report_{active_idx}",
         use_container_width=True,
     )
 
-
 # -----------------------------
 # Floating Ask My Energy AI
 # -----------------------------
 with st.popover("🤖 Ask Energy AI"):
-
     st.markdown("### 💬 Energy Assistant")
-
-    st.caption(
-        "Ask anything about your household energy data or optimization strategies."
-    )
+    st.caption("Ask anything about your household energy data or optimization strategies.")
 
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = []
 
     for msg in st.session_state.chat_history[-6:]:
-
         with st.chat_message(msg["role"]):
             st.write(msg["content"])
 
-
     question = st.text_area(
         "Your question",
-        placeholder=(
-            "e.g., Why is my bill so high? "
-            "How can I reduce AC energy consumption?"
-        ),
+        placeholder="e.g., Why is my bill so high? How can I reduce AC energy consumption?",
         key="floating_energy_question",
         height=90,
     )
 
-
-    if st.button(
-        "Send to Energy AI",
-        key="floating_send",
-        use_container_width=True,
-    ):
-
+    if st.button("Send to Energy AI", key="floating_send", use_container_width=True):
         cleaned_q = question.strip().lower()
-
         if question.strip():
-
             st.session_state.chat_history.append(
-                {
-                    "role": "user",
-                    "content": question.strip()
-                }
+                {"role": "user", "content": question.strip()}
             )
-
-            greetings = [
-                "hi",
-                "hiii",
-                "hiiii",
-                "hello",
-                "hey",
-                "salam",
-                "assalam-o-alaikum",
-                "assalam o alaikum",
-                "good morning",
-                "good evening",
-            ]
-
-            if (
-                cleaned_q in greetings
-                or cleaned_q.replace("i", "")
-                in ["h", "hh", "hhh"]
-            ):
-
-                answer = (
-                    "Hello! I am your Energy Assistant. "
-                    "How can I help you optimize your household "
-                    "energy bill or manage your appliances today?"
-                )
-
+            
+            greetings = ["hi", "hiii", "hiiii", "hello", "hey", "salam", "assalam-o-alaikum", "assalam o alaikum", "good morning", "good evening"]
+            if cleaned_q in greetings or cleaned_q.replace("i", "") in ["h", "hh", "hhh"]:
+                answer = "Hello! I am your Energy Assistant. How can I help you optimize your household energy bill or manage your appliances today?"
             else:
-
-                with st.spinner(
-                    "Energy AI is analyzing your data..."
-                ):
-
+                with st.spinner("Energy AI is analyzing your data..."):
                     answer = run_ai_analysis(
                         user_data,
                         "General Energy Assistant",
                         question.strip(),
                     )
-
-
+            
             st.session_state.chat_history.append(
-                {
-                    "role": "assistant",
-                    "content": answer
-                }
+                {"role": "assistant", "content": answer}
             )
-
             st.rerun()
-
         else:
-
-            st.warning(
-                "Please enter a question first."
-            )
-
+            st.warning("Please enter a question first.")
 
 # -----------------------------
 # Footer
 # -----------------------------
 st.markdown("---")
-
-st.markdown(
-    """
-    <div style="
-        color:#475569;
-        font-size:.85rem;
-        text-align:center;
-        padding:1rem 0;
-    ">
-        Bijli Bachat AI • Environment & Sustainability —
-        Tech for Good • Hackathon MVP •
-        Calculations are estimates based on user-provided data.
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+st.markdown('<div style="color:#475569;font-size:.85rem;text-align:center;padding:1rem 0;">Bijli Bachat AI • Environment & Sustainability — Tech for Good • Hackathon MVP • Calculations are estimates based on user-provided data.</div>', unsafe_allow_html=True)
