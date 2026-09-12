@@ -23,221 +23,283 @@ st.set_page_config(
 # -----------------------------
 st.markdown("""
 <style>
+
+    /* ========================================================
+       MAIN APP
+       ======================================================== */
+
     .stApp {
         background: linear-gradient(135deg, #f8fafc 0%, #f0fdf4 100%);
     }
 
-    /* ===================================================== */
-    /* SIDEBAR - THEME AWARE TEXT + INPUT CONTROLS           */
-    /* ===================================================== */
+
+    /* ========================================================
+       SIDEBAR — THEME AWARE
+       
+       IMPORTANT:
+       Do NOT force all sidebar elements to white.
+       Streamlit's --text-color automatically changes according
+       to Light / Dark mode.
+       ======================================================== */
 
     [data-testid="stSidebar"] {
-        background: #0f172a;
+        background: var(--secondary-background-color) !important;
     }
 
-    /* Dark theme sidebar */
-    [data-testid="stSidebar"] * {
-        color: #f8fafc;
+    /* Sidebar headings, labels and normal text */
+    [data-testid="stSidebar"] h1,
+    [data-testid="stSidebar"] h2,
+    [data-testid="stSidebar"] h3,
+    [data-testid="stSidebar"] h4,
+    [data-testid="stSidebar"] p,
+    [data-testid="stSidebar"] span,
+    [data-testid="stSidebar"] label,
+    [data-testid="stSidebar"] div,
+    [data-testid="stSidebar"] small {
+        color: var(--text-color) !important;
     }
 
-    /* ----------------------------------------------------- */
-    /* LIGHT THEME SIDEBAR                                   */
-    /* ----------------------------------------------------- */
 
-    @media (prefers-color-scheme: light) {
-        [data-testid="stSidebar"] {
-            background: #ffffff !important;
-        }
-
-        [data-testid="stSidebar"] * {
-            color: #0f172a !important;
-        }
-
-        /* Text inputs, number inputs and select boxes */
-        [data-testid="stSidebar"] input {
-            background-color: #ffffff !important;
-            color: #0f172a !important;
-            caret-color: #0f172a !important;
-            border-color: #cbd5e1 !important;
-        }
-
-        [data-testid="stSidebar"] input::placeholder {
-            color: #64748b !important;
-            opacity: 1 !important;
-        }
-
-        /* Number input wrapper */
-        [data-testid="stSidebar"] [data-testid="stNumberInput"] {
-            color: #0f172a !important;
-        }
-
-        [data-testid="stSidebar"] [data-testid="stNumberInput"] input {
-            color: #0f172a !important;
-            background-color: #ffffff !important;
-        }
-
-        /* Number input +/- buttons */
-        [data-testid="stSidebar"] [data-testid="stNumberInput"] button {
-            color: #0f172a !important;
-            background-color: #ffffff !important;
-            border-color: #cbd5e1 !important;
-        }
-
-        [data-testid="stSidebar"] [data-testid="stNumberInput"] button svg {
-            color: #0f172a !important;
-            fill: #0f172a !important;
-            stroke: #0f172a !important;
-        }
-
-        [data-testid="stSidebar"] [data-testid="stNumberInput"] button:hover {
-            background-color: #f1f5f9 !important;
-            color: #0f172a !important;
-        }
-
-        /* Selectbox main box */
-        [data-testid="stSidebar"] [data-testid="stSelectbox"] {
-            color: #0f172a !important;
-        }
-
-        [data-testid="stSidebar"] [data-testid="stSelectbox"] > div > div {
-            background-color: #ffffff !important;
-            color: #0f172a !important;
-            border-color: #cbd5e1 !important;
-        }
-
-        [data-testid="stSidebar"] [data-testid="stSelectbox"] div {
-            color: #0f172a !important;
-        }
-
-        [data-testid="stSidebar"] [data-testid="stSelectbox"] span {
-            color: #0f172a !important;
-        }
-
-        [data-testid="stSidebar"] [data-testid="stSelectbox"] svg {
-            color: #0f172a !important;
-            fill: #0f172a !important;
-        }
-
-        /* Selectbox dropdown / popup */
-        [data-testid="stSidebar"] [role="listbox"],
-        [data-testid="stSidebar"] [role="option"] {
-            background-color: #ffffff !important;
-            color: #0f172a !important;
-        }
-
-        [data-testid="stSidebar"] [role="option"] * {
-            color: #0f172a !important;
-        }
-
-        [data-testid="stSidebar"] [role="option"]:hover {
-            background-color: #f1f5f9 !important;
-            color: #0f172a !important;
-        }
-
-        /* File uploader */
-        [data-testid="stSidebar"] [data-testid="stFileUploader"] {
-            color: #0f172a !important;
-        }
-
-        [data-testid="stSidebar"] [data-testid="stFileUploader"] section {
-            background-color: #ffffff !important;
-            border-color: #cbd5e1 !important;
-        }
-
-        [data-testid="stSidebar"] [data-testid="stFileUploader"] section * {
-            color: #0f172a !important;
-        }
-
-        /* Expander */
-        [data-testid="stSidebar"] [data-testid="stExpander"] {
-            background-color: #ffffff !important;
-            border-color: #cbd5e1 !important;
-        }
-
-        [data-testid="stSidebar"] [data-testid="stExpander"] * {
-            color: #0f172a !important;
-        }
-
-        /* Sidebar captions */
-        [data-testid="stSidebar"] .stCaption,
-        [data-testid="stSidebar"] small {
-            color: #475569 !important;
-        }
-
-        /* Sidebar headings */
-        [data-testid="stSidebar"] h1,
-        [data-testid="stSidebar"] h2,
-        [data-testid="stSidebar"] h3,
-        [data-testid="stSidebar"] h4,
-        [data-testid="stSidebar"] p,
-        [data-testid="stSidebar"] label {
-            color: #0f172a !important;
-        }
-
-        /* Sidebar buttons */
-        [data-testid="stSidebar"] button {
-            color: #0f172a !important;
-        }
-
-        [data-testid="stSidebar"] button p,
-        [data-testid="stSidebar"] button span {
-            color: #0f172a !important;
-        }
-
-        /* Keep primary Analyze button readable */
-        [data-testid="stSidebar"] div.stButton > button[kind="primary"],
-        [data-testid="stSidebar"] div.stButton > button[data-testid="stBaseButton-primary"] {
-            background: #0f172a !important;
-            color: #ffffff !important;
-            border-color: #0f172a !important;
-        }
-
-        [data-testid="stSidebar"] div.stButton > button[kind="primary"] *,
-        [data-testid="stSidebar"] div.stButton > button[data-testid="stBaseButton-primary"] * {
-            color: #ffffff !important;
-        }
-    }
-
-    /* ===================================================== */
-    /* GENERAL DARK SIDEBAR INPUT VISIBILITY                 */
-    /* ===================================================== */
+    /* ========================================================
+       SIDEBAR TEXT INPUTS
+       ======================================================== */
 
     [data-testid="stSidebar"] input {
-        color: #f8fafc;
+        color: var(--text-color) !important;
+        background-color: var(--background-color) !important;
+        caret-color: var(--text-color) !important;
     }
 
     [data-testid="stSidebar"] input::placeholder {
-        color: #cbd5e1;
-        opacity: 1;
+        color: var(--text-color) !important;
+        opacity: .65 !important;
     }
+
+
+    /* ========================================================
+       SIDEBAR NUMBER INPUTS
+       Makes manually entered numbers visible.
+       ======================================================== */
 
     [data-testid="stSidebar"] [data-testid="stNumberInput"] input {
-        color: #f8fafc !important;
+        color: var(--text-color) !important;
+        background-color: var(--background-color) !important;
+        -webkit-text-fill-color: var(--text-color) !important;
+        opacity: 1 !important;
     }
 
+    /* Number input container */
+    [data-testid="stSidebar"] [data-testid="stNumberInput"] > div {
+        color: var(--text-color) !important;
+    }
+
+    /* Number input +/- buttons */
     [data-testid="stSidebar"] [data-testid="stNumberInput"] button {
-        color: #f8fafc !important;
+        color: var(--text-color) !important;
+        background-color: var(--background-color) !important;
+        border-color: var(--border-color) !important;
     }
 
     [data-testid="stSidebar"] [data-testid="stNumberInput"] button svg {
-        color: #f8fafc !important;
-        fill: #f8fafc !important;
-        stroke: #f8fafc !important;
+        color: var(--text-color) !important;
+        fill: var(--text-color) !important;
+        stroke: var(--text-color) !important;
     }
 
-    [data-testid="stSidebar"] [data-testid="stSelectbox"] div,
-    [data-testid="stSidebar"] [data-testid="stSelectbox"] span {
-        color: #f8fafc !important;
+    [data-testid="stSidebar"] [data-testid="stNumberInput"] button:hover {
+        color: var(--text-color) !important;
+        background-color: var(--secondary-background-color) !important;
     }
 
-    [data-testid="stSidebar"] [data-testid="stSelectbox"] svg {
-        color: #f8fafc !important;
-        fill: #f8fafc !important;
+
+    /* ========================================================
+       SIDEBAR SELECTBOX
+       ======================================================== */
+
+    [data-testid="stSidebar"] [data-baseweb="select"] {
+        background-color: var(--background-color) !important;
+        color: var(--text-color) !important;
     }
 
-    /* ---------------------------------------------------- */
-    /* Main application                                     */
-    /* ---------------------------------------------------- */
+    [data-testid="stSidebar"] [data-baseweb="select"] > div {
+        background-color: var(--background-color) !important;
+        color: var(--text-color) !important;
+        border-color: var(--border-color) !important;
+    }
+
+    [data-testid="stSidebar"] [data-baseweb="select"] input {
+        color: var(--text-color) !important;
+        -webkit-text-fill-color: var(--text-color) !important;
+    }
+
+    [data-testid="stSidebar"] [data-baseweb="select"] span {
+        color: var(--text-color) !important;
+    }
+
+    [data-testid="stSidebar"] [data-baseweb="select"] svg {
+        fill: var(--text-color) !important;
+        color: var(--text-color) !important;
+    }
+
+
+    /* ========================================================
+       SELECTBOX DROPDOWN / OPTIONS
+       
+       Streamlit BaseWeb can render the dropdown outside the
+       sidebar, therefore these selectors are global.
+       ======================================================== */
+
+    [data-baseweb="popover"] {
+        background-color: var(--background-color) !important;
+        color: var(--text-color) !important;
+    }
+
+    [data-baseweb="popover"] > div {
+        background-color: var(--background-color) !important;
+        color: var(--text-color) !important;
+    }
+
+    [role="listbox"] {
+        background-color: var(--background-color) !important;
+        color: var(--text-color) !important;
+    }
+
+    [role="option"] {
+        background-color: var(--background-color) !important;
+        color: var(--text-color) !important;
+    }
+
+    [role="option"] * {
+        color: var(--text-color) !important;
+    }
+
+    [role="option"]:hover {
+        background-color: var(--secondary-background-color) !important;
+        color: var(--text-color) !important;
+    }
+
+    [role="option"][aria-selected="true"] {
+        background-color: var(--secondary-background-color) !important;
+        color: var(--text-color) !important;
+    }
+
+
+    /* ========================================================
+       SIDEBAR FILE UPLOADER
+       ======================================================== */
+
+    [data-testid="stSidebar"] [data-testid="stFileUploader"] {
+        color: var(--text-color) !important;
+    }
+
+    [data-testid="stSidebar"] [data-testid="stFileUploader"] section {
+        background-color: var(--background-color) !important;
+        border-color: var(--border-color) !important;
+    }
+
+    [data-testid="stSidebar"] [data-testid="stFileUploader"] section > div {
+        color: var(--text-color) !important;
+    }
+
+    [data-testid="stSidebar"] [data-testid="stFileUploader"] small {
+        color: var(--text-color) !important;
+        opacity: .75 !important;
+    }
+
+    /* Upload / Browse button */
+    [data-testid="stSidebar"] [data-testid="stFileUploader"] button {
+        background: #0f172a !important;
+        color: #ffffff !important;
+        border: 1px solid #0f172a !important;
+        border-radius: 10px !important;
+        font-weight: 700 !important;
+    }
+
+    [data-testid="stSidebar"] [data-testid="stFileUploader"] button p,
+    [data-testid="stSidebar"] [data-testid="stFileUploader"] button span {
+        color: #ffffff !important;
+        opacity: 1 !important;
+    }
+
+    [data-testid="stSidebar"] [data-testid="stFileUploader"] button:hover {
+        background: #166534 !important;
+        border-color: #166534 !important;
+        color: #ffffff !important;
+    }
+
+
+    /* ========================================================
+       SIDEBAR EXPANDERS
+       ======================================================== */
+
+    [data-testid="stSidebar"] [data-testid="stExpander"] {
+        background-color: var(--secondary-background-color) !important;
+        border-color: var(--border-color) !important;
+    }
+
+    [data-testid="stSidebar"] [data-testid="stExpander"] summary {
+        color: var(--text-color) !important;
+        background-color: var(--secondary-background-color) !important;
+    }
+
+    [data-testid="stSidebar"] [data-testid="stExpander"] summary span {
+        color: var(--text-color) !important;
+    }
+
+    [data-testid="stSidebar"] [data-testid="stExpander"] svg {
+        color: var(--text-color) !important;
+        fill: var(--text-color) !important;
+    }
+
+    [data-testid="stSidebar"] [data-testid="stExpander"] > div {
+        background-color: var(--secondary-background-color) !important;
+        color: var(--text-color) !important;
+    }
+
+
+    /* ========================================================
+       SIDEBAR CAPTIONS / HELP TEXT
+       ======================================================== */
+
+    [data-testid="stSidebar"] .stCaption,
+    [data-testid="stSidebar"] [data-testid="stCaptionContainer"] {
+        color: var(--text-color) !important;
+        opacity: .75 !important;
+    }
+
+
+    /* ========================================================
+       SIDEBAR PRIMARY ANALYZE BUTTON
+       ======================================================== */
+
+    [data-testid="stSidebar"] div.stButton > button {
+        background: #0f172a !important;
+        color: #ffffff !important;
+        border: 1px solid #0f172a !important;
+        border-radius: 12px !important;
+        font-weight: 700 !important;
+        min-height: 2.8rem;
+    }
+
+    [data-testid="stSidebar"] div.stButton > button p,
+    [data-testid="stSidebar"] div.stButton > button span {
+        color: #ffffff !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    [data-testid="stSidebar"] div.stButton > button:hover,
+    [data-testid="stSidebar"] div.stButton > button:focus,
+    [data-testid="stSidebar"] div.stButton > button:active {
+        background: #166534 !important;
+        border-color: #166534 !important;
+        color: #ffffff !important;
+    }
+
+
+    /* ========================================================
+       HERO
+       ======================================================== */
 
     .hero {
         padding: 2rem 2.2rem;
@@ -260,6 +322,11 @@ st.markdown("""
         font-size: 1.05rem;
     }
 
+
+    /* ========================================================
+       GENERAL CARDS
+       ======================================================== */
+
     .card {
         background: #ffffff;
         border: 1px solid #e2e8f0;
@@ -281,6 +348,11 @@ st.markdown("""
         font-weight: 750;
     }
 
+
+    /* ========================================================
+       BADGE
+       ======================================================== */
+
     .badge {
         display: inline-block;
         padding: .28rem .7rem;
@@ -290,6 +362,12 @@ st.markdown("""
         background: #dcfce7;
         color: #166534 !important;
     }
+
+
+    /* ========================================================
+       CARBON FOOTPRINT
+       KEPT EXACTLY AS BEFORE
+       ======================================================== */
 
     .carbon-card {
         background: linear-gradient(135deg, #0f172a 0%, #164e63 55%, #166534 100%);
@@ -321,6 +399,11 @@ st.markdown("""
         line-height: 1.45;
     }
 
+
+    /* ========================================================
+       SECTION TITLES
+       ======================================================== */
+
     .section-title {
         color: #0f172a !important;
         font-size: 1.35rem;
@@ -332,6 +415,11 @@ st.markdown("""
         color: #475569 !important;
         font-size: .88rem;
     }
+
+
+    /* ========================================================
+       ALERT CARDS
+       ======================================================== */
 
     .warning-card {
         border-left: 5px solid #f59e0b;
@@ -349,7 +437,11 @@ st.markdown("""
         color: #14532d !important;
     }
 
-    /* Professional AI section navigation */
+
+    /* ========================================================
+       AI NAVIGATION
+       ======================================================== */
+
     .ai-nav-label {
         color: #0f172a !important;
         font-size: .82rem;
@@ -357,7 +449,6 @@ st.markdown("""
         margin-bottom: .35rem;
     }
 
-    /* Compact, text-style AI navigation — no large boxes */
     [data-testid="stRadio"] {
         margin-top: .1rem;
         margin-bottom: .35rem;
@@ -406,7 +497,6 @@ st.markdown("""
         opacity: 1 !important;
     }
 
-    /* Hide the radio control itself while retaining accessible clickable labels */
     [data-testid="stRadio"] div[role="radiogroup"] > label > div:first-child {
         display: none !important;
     }
@@ -417,7 +507,11 @@ st.markdown("""
         margin: -.1rem 0 .7rem 0;
     }
 
-    /* Energy status cards */
+
+    /* ========================================================
+       ENERGY STATUS CARDS
+       ======================================================== */
+
     .snapshot-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -499,9 +593,10 @@ st.markdown("""
         }
     }
 
-    /* ---------------------------------------------------- */
-    /* BUTTON STYLING FIXES (DOWNLOAD & MAIN BUTTONS)       */
-    /* ---------------------------------------------------- */
+
+    /* ========================================================
+       GENERAL BUTTONS
+       ======================================================== */
 
     div.stButton > button,
     div[data-testid="stDownloadButton"] > button {
@@ -534,9 +629,10 @@ st.markdown("""
         color: #ffffff !important;
     }
 
-    /* ---------------------------------------------------- */
-    /* FLOATING AI ASSISTANT POPOVER BUTTON FIXES           */
-    /* ---------------------------------------------------- */
+
+    /* ========================================================
+       FLOATING AI ASSISTANT
+       ======================================================== */
 
     [data-testid="stPopover"] > button {
         position: fixed !important;
@@ -587,9 +683,10 @@ st.markdown("""
         visibility: visible !important;
     }
 
-    /* ---------------------------------------------------- */
-    /* POPOVER CHAT WINDOW & TEXT AREA CONTRAST FIXES       */
-    /* ---------------------------------------------------- */
+
+    /* ========================================================
+       POPOVER CHAT WINDOW
+       ======================================================== */
 
     [data-testid="stPopoverBody"] {
         background-color: #ffffff !important;
@@ -620,7 +717,6 @@ st.markdown("""
         opacity: 1 !important;
     }
 
-    /* Fix text area background and typed text color inside popover */
     [data-testid="stPopoverBody"] textarea {
         background-color: #ffffff !important;
         color: #0f172a !important;
@@ -633,7 +729,11 @@ st.markdown("""
         opacity: 1 !important;
     }
 
-    /* General readable text */
+
+    /* ========================================================
+       GENERAL READABLE TEXT
+       ======================================================== */
+
     .stMarkdown,
     .stText,
     label,
@@ -641,6 +741,7 @@ st.markdown("""
     [data-testid="stMetricValue"] {
         color: #0f172a;
     }
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -762,12 +863,9 @@ If a value is not clearly available, return null.
 
 # ============================================================
 # Four AI "agent roles"
-# These are prompt-based specialist modules, NOT autonomous agents.
-# This keeps the project aligned with the course skills.
 # ============================================================
 
 def run_ai_analysis(user_data, role, user_question=None):
-
     client = build_ai_client()
 
     if client is None:
@@ -777,87 +875,61 @@ def run_ai_analysis(user_data, role, user_question=None):
         )
 
     role_instructions = {
-
         "Understanding Agent": """
 You are the Understanding Specialist for Bijli Bachat AI.
-
 Interpret the user's household, electricity-bill and appliance information.
-
 Identify the user's main energy problem and summarize it in simple language.
-
 Do not invent missing data.
 """,
 
         "Energy Analysis Agent": """
 You are the Energy Analysis Specialist for Bijli Bachat AI.
-
 Analyze appliance-level energy consumption, estimated monthly units,
 estimated costs, unusual consumption patterns, and major energy drivers.
-
-Prioritize measurable findings.
-
-Do not invent meter readings.
+Prioritize measurable findings. Do not invent meter readings.
 """,
 
         "Saving Strategy Agent": """
 You are the Saving Strategy Specialist for Bijli Bachat AI.
-
 Create a practical Pakistan-household energy-saving plan.
-
 Prioritize high-impact, low-cost actions first.
-
 Give estimated savings only when the supplied data supports an estimate,
 and label estimates clearly.
 """,
 
         "Monitoring & Alerting Agent": """
 You are the Monitoring & Alerting Specialist for Bijli Bachat AI.
-
 Identify useful thresholds, warning signs and monthly checks.
-
 Suggest what the household should monitor next month.
-
 Do not claim to monitor live electricity data; this MVP only uses user-entered data.
 """,
 
         "General Energy Assistant": """
 You are a helpful energy-efficiency advisor.
-
 Answer any specific energy questions using only the supplied household data.
-
 Be concise, practical and honest about estimates and uncertainty.
 """,
     }
 
     prompt = f"""
 PROJECT: Bijli Bachat AI — Smart Energy & Bill Optimizer
-
 COUNTRY CONTEXT: Pakistan
 
 IMPORTANT:
 This is an educational/hackathon energy-estimation application.
-
 Never claim to have access to a live smart meter unless the user supplied such data.
-
 Never fabricate tariff rates, meter readings, appliance ratings or savings.
 
 SPECIALIST ROLE:
-
-{role_instructions.get(
-    role,
-    role_instructions["General Energy Assistant"]
-)}
+{role_instructions.get(role, role_instructions["General Energy Assistant"])}
 
 HOUSEHOLD DATA:
-
 {json.dumps(user_data, indent=2, ensure_ascii=False)}
 
 USER QUESTION:
-
 {user_question or "Provide the requested specialist analysis."}
 
 OUTPUT RULES:
-
 - Use clear headings.
 - Give actionable bullet points.
 - Distinguish calculated values from AI estimates.
@@ -866,7 +938,6 @@ OUTPUT RULES:
 """
 
     try:
-
         response = client.models.generate_content(
             model="gemini-3.6-flash",
             contents=prompt,
@@ -885,7 +956,10 @@ st.markdown("""
 <div class="hero">
     <div class="badge">AI-POWERED ENERGY EFFICIENCY • HACKATHON MVP</div>
     <h1>⚡ Bijli Bachat AI</h1>
-    <p>Smart Energy & Bill Optimizer — understand your electricity use, find energy-heavy appliances, and build a practical savings plan.</p>
+    <p>
+        Smart Energy & Bill Optimizer — understand your electricity use,
+        find energy-heavy appliances, and build a practical savings plan.
+    </p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -904,7 +978,6 @@ for source_key, widget_key in [
     ("previous_bill_extracted_amount", "previous_bill_input"),
     ("previous_bill_extracted_units", "previous_units_input"),
 ]:
-
     if source_key in st.session_state:
         st.session_state[widget_key] = st.session_state.pop(source_key)
 
@@ -918,12 +991,12 @@ with st.sidebar:
         min_value=1,
         max_value=30,
         value=4,
-        step=1
+        step=1,
     )
 
     city = st.text_input(
         "City",
-        value="Multan"
+        value="Multan",
     )
 
     monthly_bill = st.number_input(
@@ -1004,7 +1077,7 @@ with st.sidebar:
 
         with st.expander(
             f"Appliance {i+1}",
-            expanded=(i < 2)
+            expanded=(i < 2),
         ):
 
             appliance_type = st.selectbox(
@@ -1067,7 +1140,7 @@ for a in appliances:
     kwh = calculate_appliance_energy(
         a["watts"],
         a["hours_per_day"],
-        a["quantity"]
+        a["quantity"],
     )
 
     cost = kwh * tariff
@@ -1094,33 +1167,30 @@ total_appliance_kwh = (
 
 estimated_appliance_cost = total_appliance_kwh * tariff
 
+
 if monthly_units > 0:
     appliance_share = min(
         (total_appliance_kwh / monthly_units) * 100,
-        999
+        999,
     )
 else:
     appliance_share = 0.0
 
 
 if previous_units > 0 and monthly_units > 0:
-
     units_change_pct = (
         (monthly_units - previous_units)
         / previous_units
     ) * 100
-
 else:
     units_change_pct = None
 
 
 if previous_bill > 0 and monthly_bill > 0:
-
     bill_change_pct = (
         (monthly_bill - previous_bill)
         / previous_bill
     ) * 100
-
 else:
     bill_change_pct = None
 
@@ -1141,7 +1211,7 @@ if analyze or "analyzed" not in st.session_state:
 
 st.markdown(
     '<div class="section-title">📊 Your Energy Snapshot</div>',
-    unsafe_allow_html=True
+    unsafe_allow_html=True,
 )
 
 
@@ -1295,7 +1365,7 @@ if (
 ):
 
     st.markdown(
-        f'''
+        f"""
         <div class="warning-card">
             ⚠️ <b>Bill Alert:</b>
             your bill increased by
@@ -1305,7 +1375,7 @@ if (
             fixed charges or other bill components, so review
             the bill details before blaming appliance usage.
         </div>
-        ''',
+        """,
         unsafe_allow_html=True,
     )
 
@@ -1337,7 +1407,7 @@ elif (
         )
 
     st.markdown(
-        f'''
+        f"""
         <div class="warning-card">
             🚨 <b>Energy Alert:</b>
             {" and ".join(reasons)}
@@ -1345,7 +1415,7 @@ elif (
             Check the appliance audit below for the likely
             high-consumption drivers.
         </div>
-        ''',
+        """,
         unsafe_allow_html=True,
     )
 
@@ -1359,7 +1429,7 @@ elif (
 ):
 
     st.markdown(
-        f'''
+        f"""
         <div class="success-card">
             ✅ <b>Good news:</b>
             your bill has reduced by
@@ -1367,7 +1437,7 @@ elif (
             compared with the previous bill,
             and your energy trend is also improving.
         </div>
-        ''',
+        """,
         unsafe_allow_html=True,
     )
 
@@ -1397,7 +1467,7 @@ with left:
         st.dataframe(
             display_df,
             use_container_width=True,
-            hide_index=True
+            hide_index=True,
         )
 
         chart_df = df[
@@ -1406,7 +1476,7 @@ with left:
 
         chart_df = chart_df.sort_values(
             "Monthly kWh",
-            ascending=True
+            ascending=True,
         )
 
         st.bar_chart(
@@ -1477,8 +1547,8 @@ st.markdown(
 
         <div class="carbon-note">
             Planning estimate using an illustrative grid factor of
-            {GRID_CO2_FACTOR:.2f} kg CO₂e/kWh.
-            This is not an official Pakistan grid-emissions factor.
+            {GRID_CO2_FACTOR:.2f} kg CO₂e/kWh. This is not an official
+            Pakistan grid-emissions factor.
         </div>
 
     </div>
@@ -1547,26 +1617,22 @@ st.session_state["active_ai_section"] = (
     ai_names.index(selected_name)
 )
 
-
 active_idx = st.session_state["active_ai_section"]
 
-active_name = active_idx
-
-active_name = ai_names[active_idx].split(
-    " ",
-    1
-)[-1]
+active_name = active_name = ai_names[
+    active_idx
+].split(" ", 1)[-1]
 
 active_role = ai_roles[active_idx]
 
 
 st.markdown(
-    f'''
+    f"""
     <div class="ai-section-caption">
         {active_name} · AI specialist analysis based on your household data
     </div>
-    ''',
-    unsafe_allow_html=True
+    """,
+    unsafe_allow_html=True,
 )
 
 
@@ -1604,9 +1670,8 @@ if saved_result:
         data=saved_result,
         file_name=(
             f"bijli_bachat_"
-            f"{ai_roles[active_idx].lower()}"
-            f".replace(' ', '_')"
-            f".replace('&', 'and').txt"
+            f"{ai_roles[active_idx].lower().replace(' ', '_').replace('&', 'and')}"
+            f".txt"
         ),
         mime="text/plain",
         key=f"download_ai_report_{active_idx}",
@@ -1622,8 +1687,7 @@ with st.popover("🤖 Ask Energy AI"):
     st.markdown("### 💬 Energy Assistant")
 
     st.caption(
-        "Ask anything about your household energy data "
-        "or optimization strategies."
+        "Ask anything about your household energy data or optimization strategies."
     )
 
     if "chat_history" not in st.session_state:
@@ -1649,7 +1713,7 @@ with st.popover("🤖 Ask Energy AI"):
     if st.button(
         "Send to Energy AI",
         key="floating_send",
-        use_container_width=True
+        use_container_width=True,
     ):
 
         cleaned_q = question.strip().lower()
@@ -1675,7 +1739,6 @@ with st.popover("🤖 Ask Energy AI"):
                 "good morning",
                 "good evening",
             ]
-
 
             if (
                 cleaned_q in greetings
@@ -1724,7 +1787,7 @@ with st.popover("🤖 Ask Energy AI"):
 st.markdown("---")
 
 st.markdown(
-    '''
+    """
     <div style="
         color:#475569;
         font-size:.85rem;
@@ -1735,6 +1798,6 @@ st.markdown(
         Tech for Good • Hackathon MVP •
         Calculations are estimates based on user-provided data.
     </div>
-    ''',
+    """,
     unsafe_allow_html=True
 )
